@@ -1,13 +1,13 @@
 # Step to Run Project
 
 ```shell
-git clone https://github.com/v-IJU/js-website.git
+https://github.com/merdon-dt/js-recipe-website.git
 ```
 
 ## Create New Branch
 
 ```shell
-git checkout development
+git checkout main
 
 git checkout -b task1
 ```
