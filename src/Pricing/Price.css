@@ -1,0 +1,48 @@
+@media (max-width: 640px){
+    .price_box{
+        display: grid;
+
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+
+    }
+
+    .pricing_box{
+        width: 100%;
+    }
+
+    
+}
+
+@media (max-width: 800px){
+    .price_heads{
+        padding: 0 30px;
+    }
+}
+
+@media (max-width: 500px){
+    .price_heads{
+        padding: 0 16px;
+    }
+    .price_box{
+        padding: 0 16px;
+    }
+
+    .pricesub_head{
+        font-size: 22px;
+    }
+}
+
+/* @media (max-width: 700px){
+  .price_subhead{
+  font-size: 22px;
+}
+
+}
+@media (max-width: 500px){
+  .meals_subhead{
+  font-size: 22px;
+}
+
+} */

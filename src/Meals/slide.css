@@ -1,0 +1,99 @@
+.slider1{
+  width: 900px;
+}
+.slideimg{
+  max-width: 105px;
+}
+@media (max-width: 1000px){
+   .slider1{
+    width: 850px;
+   }
+   .slideimg{
+  max-width: 85px;
+}
+}
+
+@media (max-width: 820px){
+   .slider1{
+    width: 680px;
+   }
+   .slideimg{
+  max-width: 65px;
+}
+}
+
+@media (max-width: 770px){
+   .slider1{
+    width: 740px;
+   }
+   .slideimg{
+  max-width: 65px;
+}
+}
+
+@media (max-width: 750px){
+   .slider1{
+    width: 100%;
+    padding: 0 20px !important;
+   }
+   .slideimg{
+  max-width: 55px;
+}
+}
+@media (max-width: 500px){
+   .slider1{
+    width: 100%;
+    padding: 0 16px !important;
+
+   }
+   .slideimg{
+  max-width: 45px;
+}
+}
+
+
+/* mealsbox */
+
+@media (max-width: 880px){
+  .gridbox_meals{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+}
+
+@media (max-width: 700px){
+  .meals_subhead{
+  font-size: 22px;
+}
+
+}
+
+@media (max-width: 550px){
+  .gridbox_meals{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+
+.cardbox{
+  width: 100% !important;
+}
+}
+
+@media (max-width: 500px){
+  .meals_subhead{
+  font-size: 22px;
+}
+.boxside_padding{
+  padding:  0 16px;
+}
+
+.price_heads{
+  padding: 0 16px ;
+}
+}

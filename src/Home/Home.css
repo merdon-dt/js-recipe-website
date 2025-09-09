@@ -1,0 +1,151 @@
+.homebg_image{
+      background-image: url('../assets/images/mainimage.jpg');
+      height: 500px;
+      background-size: cover;
+      position: relative;
+      /* z-index: 1; */
+}
+
+.homebg_image::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    opacity: 0.5;
+}
+
+.right_nav{
+    position: absolute;
+     top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+ /* .right{
+     position: absolute;
+     top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+ } */
+
+.center_head{
+    position: absolute;
+    top: 38%;
+    left: 50%;
+     transform: translate(-50%, -50%);
+} 
+
+
+
+/* .center_head{
+    position: absolute;
+    top: 32%;
+    left: 50%;
+     transform: translate(-50%, -50%);
+} 
+
+.search_home{
+     position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -20px;
+} */
+
+
+.centerhead_sec{
+    font-size: 22px;
+}
+
+#hamburger{
+    display: none;
+}
+
+
+.input_home{
+    width: 640px;
+}
+
+.close-btn{
+    display: none;
+}
+
+.logo_hide{
+    display: none;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+ 
+
+@media (max-width: 1025px){
+    .right{
+        display: none;
+        flex-direction: column;
+        background: white;
+        position: absolute;
+        top: 0px;
+        right: 0;
+        width: 100%;
+        padding: 10px;
+        color: black;
+        z-index: 999;
+    }
+
+    .close-btn{
+    display: flex;
+}
+
+.logo_hide{
+    display: flex;
+}
+
+    .right.show{
+       display: flex;
+       
+    }
+
+    #hamburger{
+        display: block;
+        font-size: 20px;
+    }
+
+    .input_home{
+    width: 520px;
+}
+}
+
+@media (max-width: 770px){
+    .centerhead_sec{
+    font-size: 18px;
+    }
+}
+
+@media (max-width: 600px){
+    .input_home{
+    width: 380px;
+}
+}
+@media  (max-width: 500px) {
+    .right{
+        font-size: 12px;
+    }
+
+    .centerhead_sec{
+    font-size: 16px;
+}
+}
+@media (max-width: 430px){
+    .input_home{
+    width: 280px;
+}
+}

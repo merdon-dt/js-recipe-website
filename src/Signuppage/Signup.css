@@ -1,0 +1,51 @@
+.signindex{
+    z-index: 9999;
+}
+
+.sign_p{
+    font-size: 14px;
+    line-height: 1;
+    color: rgb(67, 45, 45);
+}
+
+.label_name{
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+@media (max-width: 650px){
+    .signpage_box{
+        width: 100% !important;
+        padding: 0 20px !important;
+    }
+
+    .signfirst_box{
+        width: 100%;
+        position: relative;
+
+    }
+
+    .sign_p{
+      font-size: 12px;
+    }
+
+}  
+
+
+@media (max-width: 500px){
+    .signfirst_box{
+        flex-direction: column;
+        gap: 0px !important;
+        position: relative;
+        margin-top: -100px;
+    }
+
+    .signfirst_box img{
+        width: 100% !important;
+        height: 250px;
+        padding: 0px !important;
+        position: absolute;
+        border-radius: 0;
+    }
+}

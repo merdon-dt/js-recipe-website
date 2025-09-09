@@ -1,0 +1,31 @@
+
+@media (max-width: 850px){
+    .newsmain_box{
+         width: 100% !important;
+    }
+
+    
+}
+
+@media (max-width: 800px){
+    .newimg img{
+        width: 300px;
+        height: 200px;
+        margin: auto;
+        /* display: none; */
+        
+    }
+}
+
+@media (max-width: 600px){
+    .newsmain_box{
+         flex-direction: column;
+    }
+    .newsfirst_box{
+        width: 100%;
+    }
+
+    
+    
+    
+}
