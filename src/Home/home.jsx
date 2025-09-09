@@ -8,6 +8,18 @@ import Signup from "../Signuppage/Signup";
 const Home = () => {
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
+  const [navopen,setNavopen] = useState('/');
+  const [scrolling, setScrolling] = useState(false);
+ 
+
+  useEffect(() => {
+  const handleScroll = () => {
+    setScrolling(window.scrollY > 50);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
 
   const nav = {
     navleft: image.Firsthead,
@@ -47,11 +59,11 @@ const Home = () => {
         <div className="flex justify-between items-center text-white right_nav md:px-15 px-6 py-4">
           <div className="flex items-start justify-start gap-1">
             <div className="flex items-center cursor-pointer justify-center gap-1">
-              <img
+              <a href=""><img
                 src={nav.navleft}
                 className="md:w-28 md:h-3 w-20 h-2 "
                 alt=""
-              />{" "}
+              /></a>
               <div className="" style={{ fontSize: "10px" }}>
                 <i class="bi bi-geo-alt"></i>
               </div>
@@ -70,7 +82,7 @@ const Home = () => {
               >
               
                  
-                  <img src={image.navlogo} className= "logo_hide w-20 h-3 mr-auto ms-4 mt-2" alt="" />
+                  <img src={image.navlogo} className= {`logo_hide w-20 h-3 mr-auto ms-4 mt-2 ${scrolling ? "grayscale-50" : "grayscale-0"}`} alt="" />
                   <span
                     className="close-btn text-black px-4 text-2xl"
                     style={{ alignSelf: "flex-end", marginTop:"-45px" }}
@@ -79,23 +91,16 @@ const Home = () => {
                     <i class="bi bi-x"></i>
                   </span>
               
-                <Link to="home" smooth={true} duration={500} onClick={() => setOpen2(false)}
-                 className="hover:border-b-2 hover:border-white transition-all duration-200 ">
+                <Link to="home" smooth={true} duration={500} onClick={() => { setOpen2(false); setNavopen('/')}} className={`${navopen === "/"  ? "border-b-2 border-white" : "null"} ${scrolling ? "text-black" : "text-white"}`}> 
                   {rightnav.nav1}
                 </Link>
-                <Link to="meals" smooth={true} duration={500} onClick={() => setOpen2(false)}
-                className="hover:border-b-2 hover:border-white transition-all duration-200 n"
-                 spy={true}
-  activeClass="active">
+                <Link to="meals" smooth={true} duration={500} onClick={() => { setOpen2(false); setNavopen('/meals')}} className={`${navopen === "/meals"  ? "border-b-2 border-white" : "null"} ${scrolling ? "text-black" : "text-white"}`}>
                   {rightnav.nav2}
                 </Link>
-                <Link to="gallery" smooth={true} duration={500} onClick={() => setOpen2(false)}
-                 className="hover:border-b-2 hover:border-white transition-all duration-200" spy={true}
-  activeClass="active">
+                <Link to="gallery" smooth={true} duration={500} onClick={() => { setOpen2(false); setNavopen('/gallery')}} className={`${navopen === "/gallery"  ? "border-b-2 border-white" : "null"} ${scrolling ? "text-black" : "text-white"}`}>
                   {rightnav.nav3}
                 </Link>
-                <Link to="pricing" smooth={true} duration={500} onClick={() => setOpen2(false)}
-                 className="hover:border-b-2 hover:border-white transition-all duration-200">
+                <Link to="pricing" smooth={true} duration={500} onClick={() => { setOpen2(false); setNavopen('/pricing')}} className={`${navopen === "/pricing"  ? "border-b-2 border-white" : "null"} ${scrolling ? "text-black" : "text-white"}`}>
                   {rightnav.nav4}
                 </Link>
                 <button

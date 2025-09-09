@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Home from './Home/home'
 import Mealsslider from './Meals/Mealsslider';
 import Galary from  './Gallery/Galary';
@@ -40,7 +41,7 @@ const App = () => {
       <Foot/>
     </div> 
         
-      
+      <ToastContainer/>
       
     </div>
   )

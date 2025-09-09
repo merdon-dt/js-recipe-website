@@ -34,7 +34,7 @@ closenewsletter();
   return (
     <div className='fixed inset-0 bg-black/50 flex items-center justify-center mainnews_box px-6 s  z-50'>
         <div className='bg-white flex w-[650px] newsmain_box  relative '>
-            <button className='absolute top-2 right-4 text-black text-2xl ' onClick={closenewsletter}><i class="bi bi-x" ></i></button>
+            <button className='absolute top-2 right-4 text-black text-2xl cursor-pointer' onClick={closenewsletter}><i class="bi bi-x" ></i></button>
              <form onSubmit={formsubmit}>
             <div className='md:py-16 pt-8 sm:pb-5  md:px-8 px-2  flex flex-col w-[400px] newsfirst_box '>
                
@@ -50,14 +50,15 @@ closenewsletter();
             onChange={(e) => setEmail(e.target.value)}
             />
 
-            <button className='bg-black h-10 text-white w-full mt-4 text-[12px] font-bold' type='submit'>Subscribe</button>
+            <button className='bg-black h-10 text-white w-full mt-4 text-[12px] cursor-pointer font-bold' type='submit'>Subscribe</button>
 
-           <div className='flex items-cener justify-center gap-2 mt-6'>
+           <div className='flex items-cener justify-center gap-2 mt-6 '>
              <input type="checkbox"
              id='check'
              checked={notshow}
-             onChange={(e) => setNotshow(e.target.checked)} />
-            <label htmlFor="check" className='text-[12px]'>Do not show again</label>
+             onChange={(e) => setNotshow(e.target.checked)} 
+             className='cursor-pointer accent-black'/>
+            <label htmlFor="check" className='text-[12px] cursor-pointer'>Do not show again</label>
            </div>
              </div>
                 </form>
@@ -66,7 +67,7 @@ closenewsletter();
               <img  src={image.Burger} className='object-contain mx-auto' alt="" />
                
              </div>
-
+ 
         </div>
       
     </div>

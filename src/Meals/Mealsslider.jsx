@@ -54,28 +54,39 @@ const meals = [
     rating: "4.9 Rating(544)",
     tags: ["vegan", "paleo"],
   },
+  {
+    id: 5,
+    title: "Avocado Salad",
+    image: image.Meal2,
+    calories: "650 Calories",
+    score: "NutriScore @74",
+    rating: "4.9 Rating(544)",
+    tags: ["vegan", "paleo"],
+  }
   
 ];
 const Mealsslider = () => {
 
   const [showAll, setShowAll] = useState(false);
 
-  const more = showAll ? meals : meals.slice(0,2);
+  const more = showAll ? meals : meals.slice(0,3);
 
 
   return (
     <section id="meals">
-      <div className="max-w-4xl mx-auto  py-12">
-        <h1 className="text-sm font-semibold text-orange-500 boxside_padding px-7 font-roboto">
+      <div className="max-w-4xl mx-auto  sm:pt-12 sm:pb-12 pb-4 pt-6">
+        <h1 className="text-[12px] font-bold text-amber-600 boxside_padding px-7 font-roboto">
           {subheading}
         </h1>
-        <h1 className="text-3xl font-semibold text-gray-600 px-7 boxside_padding mb-11 meals_subhead">
+        <h1 className="md:text-3xl text-lg mt-1 font-semibold text-gray-600 px-7 boxside_padding mb-11">
           {heading}
         </h1>
 
+
+
         <div className="grid md:grid-cols-3 gridbox_meals">
           {more.map((meal) => (
-            <div key={meal.id} className=" flex flex-wrap px-9 boxside_padding py-2">
+            <div key={meal.id} className="flex flex-wrap px-9 boxside_padding py-2">
               <div className="bg-white  shadow-lg rounded-xl cardbox">
                 <img
                   src={meal.image}
@@ -130,14 +141,14 @@ const Mealsslider = () => {
         <div className="flex flex-col  items-center justify-center md:mt-16 mt-10">
           <button
             onClick={() => setShowAll(!showAll)}
-            className="text-amber-600 cursor-pointer  font-medium  flex items-center justify-center"
-            style={{ fontSize: "15px" }}
+            className="text-amber-600 cursor-pointer text-[14px] font-medium  flex items-center justify-center"
+            
           >
             {showAll ? reshow : show}
           </button>
           <div
             className=" text-center  bg-amber-500"
-            style={{ width: "125px", height: "1px" }}
+            style={{ width: "122px", height: "1px" }}
           ></div>
         </div>
       </div>

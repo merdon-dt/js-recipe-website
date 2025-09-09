@@ -4,12 +4,23 @@
 .slideimg{
   max-width: 105px;
 }
+
+@media (max-width: 1025px){
+  .boxside_padding{
+    padding: 0;
+    padding: 10px 20px;
+  }
+}
+
 @media (max-width: 1000px){
    .slider1{
     width: 850px;
    }
    .slideimg{
   max-width: 85px;
+}
+#meals{
+  margin: 20px;
 }
 }
 
@@ -34,7 +45,8 @@
 @media (max-width: 750px){
    .slider1{
     width: 100%;
-    padding: 0 20px !important;
+    padding: 10px 20px;
+    
    }
    .slideimg{
   max-width: 55px;
@@ -43,11 +55,14 @@
 @media (max-width: 500px){
    .slider1{
     width: 100%;
-    padding: 0 16px !important;
+    padding: 10px 16px !important;
 
    }
    .slideimg{
   max-width: 45px;
+}
+#meals{
+  margin: 0px;
 }
 }
 

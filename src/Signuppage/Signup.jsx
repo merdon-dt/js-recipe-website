@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Signup.css'
 import { image } from '../assets/assests'
+import { ToastContainer, toast } from 'react-toastify';
 
 const Signup = ({isopen, close}) => {
    if(!isopen) return null;
@@ -57,7 +58,7 @@ const Signup = ({isopen, close}) => {
            
         }
         sessionStorage.setItem("signup" , JSON.stringify(store))
-        // alert("data saved")
+        toast.success("Login Successfully");
         close();
     }
 
@@ -66,7 +67,7 @@ const Signup = ({isopen, close}) => {
             
             <div className='  justify-center items-center rounded-lg signpage_box   relative z-[10000] w-[full] h-[310px]'>
                 <div className='bg-[#f5943f] relative  flex gap-4 h-full signfirst_box w-[600px] rounded-lg'>
-                    <button className='absolute top-2 right-4  z-50 text-2xl  text-white' onClick={close}><i class="bi bi-x" ></i></button>
+                    <button className='absolute top-2 right-4  z-50 text-2xl  text-white cursor-pointer' onClick={close}><i class="bi bi-x" ></i></button>
                     <div className=' p-6'>
                         {signtext.map((text) => (
                         < div className='flex flex-col md:gap-5 gap-2'>
@@ -97,7 +98,7 @@ const Signup = ({isopen, close}) => {
 
                                 <div className='flex flex-col '>
                                     <label htmlFor="" className='label_name'>Select Find Us</label>
-                                    <select className='p-2 rounded text-black  h-8 text-sm bg-white'
+                                    <select className='p-2 rounded text-black cursor-pointer h-8 text-sm bg-white'
                                     name='findUs'
                                     value={formData.findUs}
                                     onChange={handlechge}
@@ -110,7 +111,7 @@ const Signup = ({isopen, close}) => {
                                     </select>
                                 </div>
 
-                                <button type='submit' className='bg-[#b15e15] ms-3 text-white md:w-38 w-[90%]  px-5 h-8 rounded-lg mt-6'>{text.btn}</button>
+                                <button type='submit' className='bg-[#b15e15] ms-3 cursor-pointer text-white md:w-38 w-[90%]  px-5 h-8 rounded-lg mt-6'>{text.btn}</button>
                             </form>
                         </div>
                     ))}

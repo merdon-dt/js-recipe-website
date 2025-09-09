@@ -23,18 +23,18 @@ const Galary = () => {
     ]
   return (
    <section >
-     <div id='gallery' className='bg-orange-50 py-5'>
+     <div id='gallery' className='bg-orange-50 '>
         <div className='w-full pr-3 ps-14 gallery_headpadding'>
             {gallery.map((gall) => (
                 <div className='grid grid-cols-2  items-start gal_grid'>
-                <div className='md:mt-11 mt-4'>
+                <div className='md:mt-11 mt-4 py-5'>
                     <div className='mediatext'>
-                        <p className=' font-bold text-orange-500 uppercase' style={{fontSize:"12px"}}>{gall.title}</p>
-                        <p className='text-3xl  text-gray-600 mb-6 grid_head' style={{fontWeight:"600"}}>{gall.heading}</p>
+                        <p className=' font-bold text-amber-600 uppercase' style={{fontSize:"12px"}}>{gall.title}</p>
+                        <p className='text-3xl  text-gray-600  mt-2 mb-6 grid_head' style={{fontWeight:"600"}}>{gall.heading}</p>
                         <p className='w-full text-sm text-gray-600 grid_desctext' >{gall.description}</p>
                     </div>
                 </div>
-                 <div className='grid grid-cols-3 gap-3 w-full galimg cursor-pointer'>
+                 <div className='grid grid-cols-3 gap-y-5 gap-3 py-2 w-full galimg cursor-pointer'>
                     {galimg.map((img) => (
                         <>
                         <div className='relative group rounded-lg overflow-hidden'>
