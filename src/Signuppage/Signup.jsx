@@ -111,7 +111,7 @@ const Signup = ({isopen, close}) => {
                                     </select>
                                 </div>
 
-                                <button type='submit' className='bg-[#b15e15] ms-3 cursor-pointer text-white md:w-38 w-[90%]  px-5 h-8 rounded-lg mt-6'>{text.btn}</button>
+                                <button type='submit'   className='bg-[#b15e15] ms-3 cursor-pointer text-white md:w-38 w-[90%]  px-5 h-8 rounded-lg mt-6'>{text.btn}</button>
                             </form>
                         </div>
                     ))}

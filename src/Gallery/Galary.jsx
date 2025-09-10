@@ -22,8 +22,8 @@ const Galary = () => {
         image.Gal5
     ]
   return (
-   <section >
-     <div id='gallery' className='bg-orange-50 '>
+   <section id='gallery' className='pt-16' >
+     <div  className='bg-orange-50 '>
         <div className='w-full pr-3 ps-14 gallery_headpadding'>
             {gallery.map((gall) => (
                 <div className='grid grid-cols-2  items-start gal_grid'>
@@ -39,9 +39,10 @@ const Galary = () => {
                         <>
                         <div className='relative group rounded-lg overflow-hidden'>
                             <img src={img} className='rounded-lg object-cover w-full h-50 transition-transform duration-300 group-hover:scale-105' alt="" />
-                            <div className='absolute bottom-0 left-0 h-1/2 w-full bg-gray-800 bg-opacity-5  flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
-                                <p className="text-white text-[10px] px-6 font-semibold transform translate-y-full group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out">{gall.hovertext} </p>
+                            <div className='absolute bottom-0 left-0 h-1/2 w-full bg-gray-800 bg-opacity-5  flex items-center justify-center opacity-0 group-hover:opacity-70 transition-opacity duration-300'>
+                                
                             </div>
+                            <p className="text-white absolute bottom-0 left-0 h-1/2 w-full text-[10px] px-6 py-2 font-semibold transform translate-y-full group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out">{gall.hovertext} </p>
                         </div>
                         </>
                     ))}

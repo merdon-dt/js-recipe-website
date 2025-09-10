@@ -91,7 +91,7 @@ const Home = () => {
                     <i class="bi bi-x"></i>
                   </span>
               
-                <Link to="home" smooth={true} duration={500} onClick={() => { setOpen2(false); setNavopen('/')}} className={`${navopen === "/"  ? "border-b-2 border-white" : "null"} ${scrolling ? "text-black" : "text-white"}`}> 
+                <Link to="home" smooth={true} duration={500} onClick={() => { setOpen2(false); setNavopen('')}} className={`${navopen === ""  ? "border-b-2 border-white" : "null"} ${scrolling ? "text-black" : "text-white"}`}> 
                   {rightnav.nav1}
                 </Link>
                 <Link to="meals" smooth={true} duration={500} onClick={() => { setOpen2(false); setNavopen('/meals')}} className={`${navopen === "/meals"  ? "border-b-2 border-white" : "null"} ${scrolling ? "text-black" : "text-white"}`}>
@@ -123,7 +123,7 @@ const Home = () => {
       </div>
 
       <div className="center_head flex flex-col md:gap-5 gap-3 items-center justify-center text-white  text-Oswald font-roboto">
-        <p className="md:text-5xl text-3xl" style={{ fontFamily: "font-name" }}>
+        <p className="md:text-5xl text-3xl">
           F<span style={{ color: "#e67e22" }}>OO</span>DTODAY
         </p>
         <p className="centerhead_sec">{nav.centerhead2}</p>

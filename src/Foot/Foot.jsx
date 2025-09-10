@@ -40,7 +40,7 @@ const Foot = () => {
     <div className='grid grid-cols-5 justify-evenly items-start px-47 mt-21  foot_padding '>
         <div className='flex flex-col '>
         <img src={image.footer} className='w-27 h-3 mt-1' alt="" />
-       <div className='flex gap-2 text-gray-500 ms-4 mt-5 cursor-pointer' style={{fontSize:"10px" }}>
+       <div className='flex gap-2 text-gray-500 ms-4 mt-5 cursor-pointer' style={{fontSize:"14px" }}>
          <a href="https://www.instagram.com/" target='_blank'><i class="bi bi-instagram"></i></a>
         <a href="https://www.facebook.com/" target='_blank'><i class="bi bi-facebook"></i></a>
         <a href="https://en.wikipedia.org/wiki/Twitter" target='_blank'><i class="bi bi-twitter"></i></a>

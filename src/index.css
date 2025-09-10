@@ -4,8 +4,3 @@
   --font-roboto: "Roboto", sans-serif; 
 }
 
-html, body, #root {
-  height: auto;
-  min-height: 100%;
-  overflow-y: auto;         /* make sure vertical scroll is allowed */
-}
