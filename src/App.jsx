@@ -1,5 +1,5 @@
 import React from 'react'
-import Task from './task2'
+import Task from './task1'
 
 const App = () => {
   return (
