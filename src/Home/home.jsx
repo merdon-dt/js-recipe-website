@@ -8,7 +8,7 @@ import Signup from "../Signuppage/Signup";
 const Home = () => {
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
-  const [navopen, setNavopen] = useState("/");
+  const [navopen, setNavopen] = useState(null);
   const [scrolling, setScrolling] = useState(false);
 
   const [search, setSearch] = useState("");
@@ -56,16 +56,14 @@ const Home = () => {
   //api
 
   const handlesearch = async () => {
-    if (!search) return;
+    // if (!search) return;
 
     try {
       const response = await fetch(
-        `https://forkify-api.herokuapp.com/api/v2/recipes?search=chicken`
+        `https://forkify-api.herokuapp.com/api/v2/recipes?search=${search}`
       );
       const data = await response.json();
      
-      console.log(data)
-
       setResult(data.data.recipes);
     } catch (error) {
       console.error("Error:", error);
@@ -202,8 +200,8 @@ const Home = () => {
             className="input_home bg-white text-black rounded-lg border border-gray-300  pl-12 text-sm"
             placeholder="Search Foods Drinks here"
             style={{ padding: "10px 35px" }}
-            onChange={(e) => setSearch(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handlesearch()}
+            onChange={(e) => {setSearch(e.target.value); handlesearch()}}
+         
           />
 
           <FaSearch
@@ -212,19 +210,24 @@ const Home = () => {
           />
         </div>
         
-        {/* <div>
+        <div className="px-6">
           {result.length > 0 ? (
-            result.map((item) => (
-              <div>
-                <p>{item.title}</p>
-                <p>{item.publisher}</p>
-                <img src={item.image_url} alt="" />
+           <div className="h-55  overflow-y-auto bg-white text-black px-4">
+             {result.map((item) => (
+              <div className="flex gap-4 py-4">
+               
+                <img src={item.image_url} className="h-14 w-14 object-cover rounded-full" alt="" />
+                 <div>
+                  <p className="text-lg text-orange-500 uppercase">{item.title}</p>
+                 <p className=" text-sm text-gray-600">{item.publisher}</p>
+                 </div>
               </div>
-            ))
+            ))}
+           </div>
           ) : (
-            <p>noo result</p>
+            <p></p>
           )}
-        </div> */}
+        </div>
       </div>
       {/* <div className="search_home flex justify-center ">
             <div className="relative w-full max-w-2xl px-4">
