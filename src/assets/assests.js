@@ -11,6 +11,7 @@ import Gal5 from '../assets/images/img/gallery/gallery-5.jpg'
 import Eat from '../assets/images/eat.jpg'
 import Burger from './images/image.png'
 import navlogo from './images/img/omnifood-logo-today.png'
+import Pizza from './images/pizza.jpg'
 
 
 
@@ -31,6 +32,7 @@ export const image = {
     footer,
     Eat,
     Burger,
-    navlogo
+    navlogo,
+    Pizza
 
 }
