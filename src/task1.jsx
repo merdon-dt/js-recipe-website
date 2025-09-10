@@ -7,6 +7,7 @@ const task = () => {
 
   const n1 = Number(num1);
   const n2 = Number(num2);
+  
 
   return (
     <div>
@@ -22,9 +23,7 @@ const task = () => {
 
     <button onClick={() => setResult(n1/n2)}>div</button>
 
-        
-
-        
+  
      
         <p>{result}</p>
     
