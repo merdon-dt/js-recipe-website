@@ -7,18 +7,20 @@ import Divisiblecheck from './Divisiblecheck'
 import PrimeNumber from './PrimeNumber'
 import TimeFormat from './TimeFormat'
 import TimeFind from './TimeFind'
+import Cart from './Cart'
 
 const App = () => {
   return (
     <div>
       {/* <Task/>
-      <OddorEven/> */}
+      <OddorEven/>
       <Calculator/>
       <Mark/>
       <Divisiblecheck />
-      <PrimeNumber/>
+      <PrimeNumber/> */}
       {/* <TimeFormat/> */}
       <TimeFind/>
+      <Cart/>
       
     </div>
   )
