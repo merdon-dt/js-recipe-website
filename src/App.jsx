@@ -4,6 +4,8 @@ import OddorEven from '../OddorEven'
 import Calculator from './Calculator'
 import Mark from './Mark'
 import Divisiblecheck from './Divisiblecheck'
+import PrimeNumber from './PrimeNumber'
+import TimeFormat from './TimeFormat'
 
 const App = () => {
   return (
@@ -13,6 +15,8 @@ const App = () => {
       <Calculator/>
       <Mark/>
       <Divisiblecheck />
+      <PrimeNumber/>
+      <TimeFormat/>
       
     </div>
   )
