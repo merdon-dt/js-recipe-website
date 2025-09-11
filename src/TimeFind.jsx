@@ -6,23 +6,38 @@ const TimeFind = () => {
 
     const findshow = () => {
 
-         if(time>=5 && time<12 ){
+       const times = time.split(":").map(Number);
+
+        if (times.length !== 2) {
+            setShow("Please enter in HH:MM format");
+            return;
+        }
+
+        const hour = times[0];
+
+     
+    
+   if(hour>=5 && hour<12 ){
         setShow("hey its Morning had a tea")
     }
-    else if(time>=12 && time<15){
+    else if(hour>=12 && hour<15){
         setShow("hey its AfterNoon had a lunch")
     }
-    else if(time>=15 && time<19){
+    else if(hour>=15 && hour<19){
         setShow("hey its Evening had a tea")
     }
-    else{
+    else if( hour>=1 && hour<5 || hour>=19 && hour<=24){
         setShow("Good Night Sweet Dreams")
 
+    }
+    else{
+        setShow("Please enter the correct time")
     }
 
     }
   return (
     <div>
+        <h1>Find Time</h1>
         <input type="text" onChange={(e) => setTime(e.target.value) } />
 
         <button onClick={findshow}>Show</button>

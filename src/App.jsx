@@ -17,7 +17,7 @@ const App = () => {
       <Mark/>
       <Divisiblecheck />
       <PrimeNumber/>
-      <TimeFormat/>
+      {/* <TimeFormat/> */}
       <TimeFind/>
       
     </div>
