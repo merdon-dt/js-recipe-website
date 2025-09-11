@@ -8,7 +8,7 @@ const TimeFind = () => {
 
        const times = time.split(":").map(Number);
 
-        if (times.length !== 1) {
+        if (times.length !== 2) {
             setShow("Please enter in HH:MM format");
             return;
         }
