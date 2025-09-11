@@ -1,0 +1,26 @@
+@media(max-width: 1200px){
+    .recipe_line{
+       width: 100% !important;
+       padding: 0 40px !important;
+    }
+
+}
+
+@media(max-width: 800px){
+    .recipe_line p{
+      font-size:  14px;
+    }
+}
+
+@media(max-width: 600px){
+    .recipe_line p{
+      font-size:  12px;
+      line-height: 1.2;
+    
+    }
+    .recipe_line{
+        padding: 0px 16px !important;
+      grid-template-columns: 1fr !important;
+
+    }
+}

@@ -8,18 +8,20 @@ import Signup from "../Signuppage/Signup";
 const Home = () => {
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
-  const [navopen,setNavopen] = useState('/');
+  const [navopen, setNavopen] = useState(null);
   const [scrolling, setScrolling] = useState(false);
- 
+
+  const [search, setSearch] = useState("");
+  const [result, setResult] = useState([]);
 
   useEffect(() => {
-  const handleScroll = () => {
-    setScrolling(window.scrollY > 50);
-  };
+    const handleScroll = () => {
+      setScrolling(window.scrollY > 50);
+    };
 
-  window.addEventListener("scroll", handleScroll);
-  return () => window.removeEventListener("scroll", handleScroll);
-}, []);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const nav = {
     navleft: image.Firsthead,
@@ -37,21 +39,47 @@ const Home = () => {
     centerhead2: "Discover the best Meals & drinks",
   };
 
+  useEffect(() => {
+    const handclick = (e) => {
+      if (!e.target.closest(".outclick") && open2) {
+        setOpen2(false);
+      }
+    };
 
- useEffect(() => {
-  const handclick = (e) => {
-    if(!e.target.closest('.outclick') && open2) {
-      setOpen2(false);
-    }
-  };
+    document.addEventListener("mousedown", handclick);
 
-  document.addEventListener('mousedown', handclick);
+    return () => {
+      document.removeEventListener("mousedown", handclick);
+    };
+  }, [open2]);
 
-  return () => {
-    document.removeEventListener('mousedown', handclick);
-    }
-  
- },[open2]);
+  //api
+
+
+const handlesearch = async () => {
+  if (!search) {
+    setResult([]); 
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      `https://forkify-api.herokuapp.com/api/v2/recipes?search=${search.toLowerCase()}`
+    );
+    const data = await response.json();
+    setResult(data.data.recipes || []);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
+useEffect(() => {
+  const timer = setTimeout(() => {
+    handlesearch();
+  }, 500); 
+  return () => clearTimeout(timer);
+}, [search]);
+
 
   return (
     <div>
@@ -59,11 +87,13 @@ const Home = () => {
         <div className="flex justify-between items-center text-white right_nav md:px-15 px-6 py-4">
           <div className="flex items-start justify-start gap-1">
             <div className="flex items-center cursor-pointer justify-center gap-1">
-              <a href=""><img
-                src={nav.navleft}
-                className="md:w-28 md:h-3 w-20 h-2 "
-                alt=""
-              /></a>
+              <a href="">
+                <img
+                  src={nav.navleft}
+                  className="md:w-28 md:h-3 w-20 h-2 "
+                  alt=""
+                />
+              </a>
               <div className="" style={{ fontSize: "10px" }}>
                 <i class="bi bi-geo-alt"></i>
               </div>
@@ -80,27 +110,75 @@ const Home = () => {
                 } md:flex`}
                 onClick={() => setOpen2(false)}
               >
-              
-                 
-                  <img src={image.navlogo} className= {`logo_hide w-20 h-3 mr-auto ms-4 mt-2 ${scrolling ? "grayscale-50" : "grayscale-0"}`} alt="" />
-                  <span
-                    className="close-btn text-black px-4 text-2xl"
-                    style={{ alignSelf: "flex-end", marginTop:"-45px" }}
-                    onClick={() => setOpen2(false)}
-                  >
-                    <i class="bi bi-x"></i>
-                  </span>
-              
-                <Link to="home" smooth={true} duration={500} onClick={() => { setOpen2(false); setNavopen('/')}} className={`${navopen === "/"  ? "border-b-2 border-white" : "null"} ${scrolling ? "text-black" : "text-white"}`}> 
+                <img
+                  src={image.navlogo}
+                  className={`logo_hide w-20 h-3 mr-auto ms-4 mt-2 ${
+                    scrolling ? "grayscale-50" : "grayscale-0"
+                  }`}
+                  alt=""
+                />
+                <span
+                  className="close-btn text-black px-4 text-2xl"
+                  style={{ alignSelf: "flex-end", marginTop: "-45px" }}
+                  onClick={() => setOpen2(false)}
+                >
+                  <i class="bi bi-x"></i>
+                </span>
+
+                <Link
+                  to="home"
+                  smooth={true}
+                  duration={500}
+                  onClick={() => {
+                    setOpen2(false);
+                    setNavopen("");
+                  }}
+                  className={`${
+                    navopen === "" ? "border-b-2 border-white" : "null"
+                  } ${scrolling ? "text-black" : "text-white"}`}
+                >
                   {rightnav.nav1}
                 </Link>
-                <Link to="meals" smooth={true} duration={500} onClick={() => { setOpen2(false); setNavopen('/meals')}} className={`${navopen === "/meals"  ? "border-b-2 border-white" : "null"} ${scrolling ? "text-black" : "text-white"}`}>
+                <Link
+                  to="meals"
+                  smooth={true}
+                  duration={500}
+                  onClick={() => {
+                    setOpen2(false);
+                    setNavopen("/meals");
+                  }}
+                  className={`${
+                    navopen === "/meals" ? "border-b-2 border-white" : "null"
+                  } ${scrolling ? "text-black" : "text-white"}`}
+                >
                   {rightnav.nav2}
                 </Link>
-                <Link to="gallery" smooth={true} duration={500} onClick={() => { setOpen2(false); setNavopen('/gallery')}} className={`${navopen === "/gallery"  ? "border-b-2 border-white" : "null"} ${scrolling ? "text-black" : "text-white"}`}>
+                <Link
+                  to="gallery"
+                  smooth={true}
+                  duration={500}
+                  onClick={() => {
+                    setOpen2(false);
+                    setNavopen("/gallery");
+                  }}
+                  className={`${
+                    navopen === "/gallery" ? "border-b-2 border-white" : "null"
+                  } ${scrolling ? "text-black" : "text-white"}`}
+                >
                   {rightnav.nav3}
                 </Link>
-                <Link to="pricing" smooth={true} duration={500} onClick={() => { setOpen2(false); setNavopen('/pricing')}} className={`${navopen === "/pricing"  ? "border-b-2 border-white" : "null"} ${scrolling ? "text-black" : "text-white"}`}>
+                <Link
+                  to="pricing"
+                  smooth={true}
+                  duration={500}
+                  onClick={() => {
+                    setOpen2(false);
+                    setNavopen("/pricing");
+                  }}
+                  className={`${
+                    navopen === "/pricing" ? "border-b-2 border-white" : "null"
+                  } ${scrolling ? "text-black" : "text-white"}`}
+                >
                   {rightnav.nav4}
                 </Link>
                 <button
@@ -123,7 +201,7 @@ const Home = () => {
       </div>
 
       <div className="center_head flex flex-col md:gap-5 gap-3 items-center justify-center text-white  text-Oswald font-roboto">
-        <p className="md:text-5xl text-3xl" style={{ fontFamily: "font-name" }}>
+        <p className="md:text-5xl text-3xl">
           F<span style={{ color: "#e67e22" }}>OO</span>DTODAY
         </p>
         <p className="centerhead_sec">{nav.centerhead2}</p>
@@ -133,12 +211,34 @@ const Home = () => {
             className="input_home bg-white text-black rounded-lg border border-gray-300  pl-12 text-sm"
             placeholder="Search Foods Drinks here"
             style={{ padding: "10px 35px" }}
+            onChange={(e) => setSearch(e.target.value)}
+            // onKeyDown={(e) => e.key === "Enter" && handlesearch()}
+         
           />
 
           <FaSearch
             className="absolute ms-3 left-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none text-base"
             style={{ fontSize: "12px" }}
           />
+        </div>
+        
+        <div className="px-6">
+          {result.length > 0 ? (
+           <div className=" mt-2 w-full max-h-54  overflow-y-auto bg-white text-black px-4">
+             {result.map((item) => (
+              <div className="flex gap-4 py-4">
+               
+                <img src={item.image_url} className="h-14 w-14 object-cover rounded-full" alt="" />
+                 <div>
+                  <p className="text-lg text-orange-500 uppercase">{item.title}</p>
+                 <p className=" text-sm text-gray-600">{item.publisher}</p>
+                 </div>
+              </div>
+            ))}
+           </div>
+          ) : (
+            <p></p>
+          )}
         </div>
       </div>
       {/* <div className="search_home flex justify-center ">

@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { image } from '../assets/assests'
 import './News.css'
+import { ToastContainer, toast } from 'react-toastify';
+
 
 
 const Newsletter = ({closenewsletter}) => {
@@ -10,7 +12,20 @@ const Newsletter = ({closenewsletter}) => {
     const formsubmit = (e) => {
         e.preventDefault();
 
-const subscription = {email,notshow};
+if (!email.trim()) {
+      toast.warning("Please enter your email address");
+    return; 
+  }
+
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email.trim())) {
+   toast.warning("Please enter correct email");
+    return; 
+  }
+
+  const subscription = { email: email.trim(), notshow };
+
 
 let store = JSON.parse(localStorage.getItem("new-sub"));
 if(!Array.isArray(store)){
@@ -25,7 +40,7 @@ if(notshow){
 else {
   localStorage.removeItem("hidenews")
 }
-alert("Subscribed successfully");
+toast.success("Subscribed successfully");
 closenewsletter();
 
 
@@ -45,7 +60,7 @@ closenewsletter();
             <input type="text" 
             placeholder=' Enter Your Email'
             className='w-full bg-gray-100 h-10 p-2 mt-7 text-[12px]'
-            required
+      
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             />
