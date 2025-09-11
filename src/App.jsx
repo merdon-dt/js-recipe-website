@@ -3,6 +3,7 @@ import Task from './task1'
 import OddorEven from '../OddorEven'
 import Calculator from './Calculator'
 import Mark from './Mark'
+import Divisiblecheck from './Divisiblecheck'
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
       <OddorEven/> */}
       <Calculator/>
       <Mark/>
+      <Divisiblecheck />
       
     </div>
   )

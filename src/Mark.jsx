@@ -23,6 +23,7 @@ const Mark = () => {
 
   return (
     <div>
+        <h1>find mark pass or fail</h1>
 
         <input type="text" onChange={(e) => setMark(e.target.value)} />
         <button onClick={checkk}>Check</button>

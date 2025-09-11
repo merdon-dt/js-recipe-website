@@ -30,6 +30,7 @@ const Calculator = () => {
 
   return (
     <div>
+        <h1>Calculator</h1>
          <input type="number" value={num1} 
         onChange={(e) => setnum1(e.target.value)} />
          <input type="number" value={num2} 
