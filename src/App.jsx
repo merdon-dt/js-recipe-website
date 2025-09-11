@@ -1,12 +1,16 @@
 import React from 'react'
 import Task from './task1'
 import OddorEven from '../OddorEven'
+import Calculator from './Calculator'
+import Mark from './Mark'
 
 const App = () => {
   return (
     <div>
-      <Task/>
-      <OddorEven/>
+      {/* <Task/>
+      <OddorEven/> */}
+      <Calculator/>
+      <Mark/>
       
     </div>
   )
