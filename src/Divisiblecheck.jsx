@@ -7,7 +7,7 @@ const Divisiblecheck = () => {
    const find = () => {
     const number = Number(num)
 
-    if(number % 3 == 0 && number % 3 == 0){
+    if(number % 3 == 0 && number % 5 == 0){
         setResult("Is divisible")
     }
     else{

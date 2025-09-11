@@ -6,6 +6,7 @@ import Mark from './Mark'
 import Divisiblecheck from './Divisiblecheck'
 import PrimeNumber from './PrimeNumber'
 import TimeFormat from './TimeFormat'
+import TimeFind from './TimeFind'
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
       <Divisiblecheck />
       <PrimeNumber/>
       <TimeFormat/>
+      <TimeFind/>
       
     </div>
   )
