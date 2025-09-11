@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './Cart.css'
 
 const Cart = () => {
   const [cart, setcart] = useState(false);
@@ -6,9 +7,9 @@ const Cart = () => {
 
   const list = [
     {
-      item1: "one",
-      item2: "two",
-      item3: "three",
+      item1: "item1",
+      item2: "item2",
+      item3: "item3",
     },
   ];
 
@@ -25,7 +26,7 @@ const Cart = () => {
     <div>
         <h1>Cart task</h1>
       
-      <div style={{ display: "flex",gap:"20px" }}>
+      <div className="cart">
 
         <button onClick={addcart}>Add Cart</button>
         <button onClick={removecart}>Remove Cart</button>
@@ -33,15 +34,9 @@ const Cart = () => {
 
       </div>
 
+       <div>
       {cart && (
-        <div
-          style={{
-            backgroundColor: "gray",
-            width: "100px",
-            padding: "10px 20px",
-            color: "white", margin:"20px"
-          }}
-        >
+        <div  className="box">
           {list.map((listt) => (
             <>
               <p>{listt.item1}</p>
@@ -51,6 +46,7 @@ const Cart = () => {
           ))}
         </div>
       )}
+      </div>
 
     </div>
   );
