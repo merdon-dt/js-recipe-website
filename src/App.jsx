@@ -17,6 +17,9 @@ import Reversestring from './Forloop/Reversestring'
 import Factorial from './Forloop/Factorial'
 import Arraynumber from './Forloop/Arraynumber'
 import ArrayNumberadd from './Forloop/ArrayNumberadd'
+import Findbig from './Forloop/Findbig'
+import Vowels from './Forloop/Vowels'
+import Fibonacci from './Forloop/Fibonacci'
 
 const App = () => {
   return (
@@ -40,6 +43,9 @@ const App = () => {
       <Factorial/>
       <Arraynumber/>
       <ArrayNumberadd/>
+      <Findbig/>
+      <Vowels/>
+      <Fibonacci/>
       
     </div>
   )
