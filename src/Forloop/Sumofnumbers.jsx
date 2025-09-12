@@ -6,7 +6,7 @@ const Sumofnumbers = () => {
 
     for(let i=1 ;i<=100;i++){
         sum.push(<p>{i}</p>)
-        add +=i
+       add +=i
       
 
     }

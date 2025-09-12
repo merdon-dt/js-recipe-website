@@ -30,7 +30,8 @@ const Cart = () => {
             cart.map((c) => (
                 <p>{c}</p>
             ))
-         )}
+         )
+         }
          </div>
 
          <button disabled={cart.length === 0}>Checkbox</button>
