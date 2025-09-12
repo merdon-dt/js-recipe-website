@@ -1,3 +1,10 @@
+.maindiv_cook{
+  width: 80%;
+  margin: auto !important;
+
+}
+
+
 @media(max-width: 1200px){
     .recipe_line{
        width: 100% !important;

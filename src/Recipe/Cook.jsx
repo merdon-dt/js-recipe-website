@@ -33,7 +33,7 @@ const Cook = () => {
   }
 
     return (
-        <div>
+        <div className='maindiv_cook'>
             <div className='relative flex items-center justify-center '>
                 <img src={apidata.image_url} className='w-full h-140 object-cover ' alt="Pizza" />
                 <h1 className='absolute flex bottom-0 bg-gradient-to-r from-orange-400 to-orange-600 px-6 py-2 z-10 text-white transform -rotate-3 md:text-2xl '>
@@ -47,7 +47,9 @@ const Cook = () => {
                     <p>    <i className="bi bi-clock text-orange-500 mr-2"></i>{apidata.cooking_time}</p>
                     <p>  <i className="bi bi-people text-orange-500 mr-2"></i>{apidata.servings} SERVINGS MINUTES</p>
                 </div>
-                <div className='flex items-center justify-center gap-140'>
+                
+            </div>
+            <div className='flex items-center justify-between '>
                     <div className='flex gap-2'>
 
                         <i className="bi bi-dash text-orange-500 px-1 border border-amber-700 rounded-full"></i>
@@ -60,7 +62,6 @@ const Cook = () => {
 
                 </div>
 
-            </div>
 
             <div className='mt-1 flex flex-col items-center justify-center bg-gray-100  py-20 '>
 
