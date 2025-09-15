@@ -13,8 +13,9 @@ const Calculator = () => {
         multi:(a,b) => a*b,
         div:(a,b) => a/b
       }
-      return respone[fun](num1,num2)
+      return response[fun](num1,num2)
      }
+     
      const checkk = () => {
         const n1= Number(num1);
         const n2 = Number(num2);

@@ -5,10 +5,11 @@ const Vowels = () => {
     const[add,setAdd] = useState(0)
 
      const check = () => {
-    let count =0;
+    let count = 0;
     const vowels = "aeiouAEIOU";
 
     for(let i=0; i < word.length; i++){
+
         if(vowels.includes(word[i])){
             count++;
         }

@@ -30,18 +30,21 @@ import Hobbies from './Forloop/Hobbies'
 import Average from './Forloop/Average'
 import PrintCities from './Forloop/PrintCities'
 import Orders from './Forloop/Orders'
+import CartAdding from './Forloop/CartAdding'
+import Orders2 from './Forloop/Orders2'
+import Twistedorder from './Forloop/Twistedorder'
 
 
 const App = () => {
   return (
     <div>
-      <Task/>
+      {/* <Task/>
       <OddorEven/>
       <Calculator/>
       <Mark/>
       <Divisiblecheck />
       <PrimeNumber/>
-      {/* <TimeFormat/> */}
+      <TimeFormat/>
       <TimeFind/>
       <Cart/>
       <h1>Forloop task</h1>
@@ -66,7 +69,11 @@ const App = () => {
       <Hobbies/>
       <Average/>
       <PrintCities/>
-      <Orders/>
+      <Orders/> */}
+      {/* <CartAdding/> */}
+      {/* <Orders2/> */}
+      <Twistedorder/>
+      
       
       
     </div>
