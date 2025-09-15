@@ -13,11 +13,11 @@ const Fibonacci = () => {
   return (
     <div>
       <h2>First 6 Fibonacci Numbers:</h2>
-      <ul>
+      <p>
         {fib.map((num) => (
          <p>{num}</p>
         ))}
-      </ul>
+      </p>
     </div>
   );
 };

@@ -20,16 +20,27 @@ import ArrayNumberadd from './Forloop/ArrayNumberadd'
 import Findbig from './Forloop/Findbig'
 import Vowels from './Forloop/Vowels'
 import Fibonacci from './Forloop/Fibonacci'
+import Starprinting from './Forloop/Starprinting'
+import Number from './Forloop/numberPrint'
+import ArrayKeyandObject from './Forloop/ArrayKeyandObject'
+import Printusername from './Printusername'
+import Printtotalprice from './Printtotalprice'
+import PrinthighProduct from './PrinthighProduct'
+import Hobbies from './Forloop/Hobbies'
+import Average from './Forloop/Average'
+import PrintCities from './Forloop/PrintCities'
+import Orders from './Forloop/Orders'
+
 
 const App = () => {
   return (
     <div>
-      {/* <Task/>
+      <Task/>
       <OddorEven/>
       <Calculator/>
       <Mark/>
       <Divisiblecheck />
-      <PrimeNumber/> */}
+      <PrimeNumber/>
       {/* <TimeFormat/> */}
       <TimeFind/>
       <Cart/>
@@ -46,6 +57,17 @@ const App = () => {
       <Findbig/>
       <Vowels/>
       <Fibonacci/>
+      <Starprinting/>
+      <Number/>
+      <ArrayKeyandObject/>
+      <Printusername/>
+      <Printtotalprice/>
+      <PrinthighProduct/>
+      <Hobbies/>
+      <Average/>
+      <PrintCities/>
+      <Orders/>
+      
       
     </div>
   )

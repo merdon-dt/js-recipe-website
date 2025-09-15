@@ -6,26 +6,19 @@ const Calculator = () => {
      const [response,setResponse] = useState(null)
      const [result,setResult] = useState(null);
 
+     function calculate (num1,num2,fun){
+      const response ={
+        add: (a,b) => a+b,
+        sub:(a,b) => a-b,
+        multi:(a,b) => a*b,
+        div:(a,b) => a/b
+      }
+      return respone[fun](num1,num2)
+     }
      const checkk = () => {
         const n1= Number(num1);
-        const n2 = Number(num2)
-
-        if(response === "add"){
-            setResult(n1+n2)
-        }
-        else if(response === "sub"){
-            setResult(n1-n2)
-        }
-         else if(response === "sub"){
-            setResult(n1-n2)
-        }
-         else if(response === "multi"){
-            setResult(n1*n2)
-        }
-         else if(response === "div"){
-            setResult(n1/n2)
-        }
-
+        const n2 = Number(num2);
+        setResult(calculate(n1,n2,response))
      }
 
   return (
@@ -43,8 +36,7 @@ const Calculator = () => {
             <option value="sub">Sub</option>
 
             <option value="multi">Multi</option>
-             <option value="div">
-                Divi</option>
+             <option value="div">Divi</option>
 
 
         </select>
