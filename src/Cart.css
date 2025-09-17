@@ -39,3 +39,41 @@
 /* .count{  
      float: inline-end;
 } */
+
+
+.cart_img{
+    background-image: url('./assets/download.jpg');
+    background-size: cover;
+    object-fit: cover;
+     width: 80px;
+     height: 80px;
+}
+.cart_img2{
+    background-image: url('./assets/downloa.jpg');
+    background-size: cover;
+    object-fit: cover;
+     width: 80px;
+     height: 80px;
+}
+.cart_img3{
+    background-image: url('./assets/down.jpg');
+    background-size: cover;
+    object-fit: cover;
+     width: 80px;
+     height: 80px;
+}
+
+.cartitem{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 0px;
+  width: 500px;
+
+}
+
+.flexdel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}

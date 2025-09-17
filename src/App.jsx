@@ -33,6 +33,13 @@ import Orders from './Forloop/Orders'
 import CartAdding from './Forloop/CartAdding'
 import Orders2 from './Forloop/Orders2'
 import Twistedorder from './Forloop/Twistedorder'
+import Orderstwisted from './Forloop/Orderstwisted'
+import Demo from './Forloop/Demo'
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import OrderList from './Orderlist'
+import { OrderProvider } from './OrderContext'
+import Demo2 from './Demo2'
+
 
 
 const App = () => {
@@ -72,7 +79,17 @@ const App = () => {
       <Orders/> */}
       {/* <CartAdding/> */}
       {/* <Orders2/> */}
-      <Twistedorder/>
+      {/* <Twistedorder/> */}
+      {/* <Orderstwisted/> */}
+      {/* <Demo/> */}
+      {/* <Demo2/> */}
+
+        <OrderProvider>
+      <div>
+        <h1>Order Management</h1>
+        <OrderList/>
+      </div>
+    </OrderProvider>
       
       
       

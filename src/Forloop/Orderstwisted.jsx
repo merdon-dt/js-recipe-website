@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
-const Twistedorder = () => {
-  const orders = [
+const Orderstwisted = () => {
+    const orders = [
     {
       orderId: 101,
       customer: "John",
@@ -164,82 +164,52 @@ const Twistedorder = () => {
     },
   ];
 
+
   const twistprice = (quantity,unit) => {
-    if(unit === "g"){
-      return quantity/1000
-    }
-    else if(unit === "ml"){
-      return quantity/1000
-    }
-    else{
-      return quantity
-    }
-  
-  }
-
-  const getprice = (item) => {
-    const correctprice =  twistprice(item.quantity ,item.unit)
-    return correctprice * item.pricePerUnit
-  }
-
-  const torders = () => {
-    let orderlist = [];
-
-    for (let i = 0; i < orders.length; i++) {
-      let order = orders[i];
-      let list = [];
-      let orderTotal = 0;
-
-      for (let j = 0; j < order.items.length; j++) {
-        let item = order.items[j];
-        const price = getprice(item)
-        orderTotal = orderTotal + price
-
-        list.push(
-          <>
-            <ul>
-              <li>
-                {item.name} - {item.quantity}
-                {item.unit} {item.pricePerUnit}
-
-                
-              </li>
-            </ul>
-          </>
-        );
+      if(unit === "g"){
+        return quantity/1000
       }
-      orderlist.push(
-        <div>
-          <h3>CUSTOMER: {order.customer}</h3>
+      else if(unit === "ml"){
+        return quantity/1000
+      }
+      else{
+        return quantity
+      }
+  }
 
-          <ul>{list}</ul>
-          <h2>Total price : {orderTotal}</h2>
+  const TotalPrice = (itm) =>{
+     const check = twistprice(itm.quantity,itm.unit)
+     return check * itm.pricePerUnit
+  }
 
-        </div>
-      );
-    }
-
-    return orderlist;
-  };
 
   return (
     <div>
-      <div>
-        {/* {orders.map(order => (
-            <div>
+        {orders.map((order) => {
+            const total = order.items.reduce((a,b) => {
+              const price =  TotalPrice(b)
+              return  a + price
+             
+            },0) 
+            
+           return (
+             <div>
                 <h3>Customer: {order.customer}</h3>
+                
                 <ul>
-                    {order.items.map((itm) => (
-                        <li>{itm.name} - {itm.quantity} {itm.unit} {itm.pricePerUnit} ({itm.category})</li>
-                    ))}
+                    {order.items.map((item) =>(
+                        <li>{item.name} - {item.quantity} {item.unit} {item.pricePerUnit} ({item.category})</li>
+                    )
+                    )}
                 </ul>
-                <h4>Total:{order.items.reduce((a,c) => a + c.quantity*c.pricePerUnit, 0)}</h4>
+                <h4>Total: {total}</h4>
             </div>
-        ))} */}
-        <div>{torders()}</div>
-      </div>
-    </div>
-  );
-};
+           )
+        })}
 
-export default Twistedorder;
+      
+    </div>
+  )
+}
+
+export default Orderstwisted
