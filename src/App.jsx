@@ -39,6 +39,8 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import OrderList from './Orderlist'
 import { OrderProvider } from './OrderContext'
 import Demo2 from './Demo2'
+import Products from './ProductswithUI/Products'
+import Product from './ProductswithUI/Product2'
 
 
 
@@ -83,13 +85,15 @@ const App = () => {
       {/* <Orderstwisted/> */}
       {/* <Demo/> */}
       {/* <Demo2/> */}
+      <Products/>
+      {/* <Product/> */}
 
-        <OrderProvider>
+        {/* <OrderProvider>
       <div>
         <h1>Order Management</h1>
         <OrderList/>
       </div>
-    </OrderProvider>
+    </OrderProvider> */}
       
       
       

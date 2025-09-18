@@ -10,14 +10,16 @@ export const OrderProvider = ({ children }) => {
       items: [
         { name: "Apple", quantity: 1, unit: "kg", pricePerUnit: 150, },
         { name: "Milk", quantity: 2, unit: "litre", pricePerUnit: 60 },
-      ],
+      ],  
+    },
+    {
       orderId: 2,
-      customer: "Jon",
+      customer: "Alex",
       items: [
         { name: "Apple", quantity: 1, unit: "kg", pricePerUnit: 150, },
         { name: "Milk", quantity: 2, unit: "litre", pricePerUnit: 60 },
       ],
-    },
+    }
   ]);
 
   return (
