@@ -1,6 +1,6 @@
 .productback{
     background-image: url('/src/assets/product.jpg');
-    height: 670px;
+    height: 550px;
     object-fit: cover;
     background-size: cover;
     position: fixed;
@@ -10,11 +10,10 @@
 
 .product_content{
     position: absolute;
-    height: 700px;
     top: 0;
     left: 50%;
     right: 0;
-    height: 670px;
+    height: 550px;
     overflow-y: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -74,15 +73,122 @@
 .input{
     width: 20px;
     height: 20px;
+    margin-top: 14px;
 }
 
 .list li{
-    margin-left: 60px;
     font-size: 24px;
     font-weight: 500;
     line-height: 2;
     color: rgb(31, 27, 63);
     list-style: none;
+    display: flex;
+  
 
 }
 
+.sec_half{
+    margin-left: 120px;
+}
+
+.Add_cart button{
+   float: right;
+   font-size: 16px;
+   font-weight: 800;
+   height: 40px;
+   width: 200px;
+   margin-top: 4px;
+   border: 3px solid  rgb(31, 27, 63);
+}
+.Add_cart button:hover{
+    background-color:  rgb(31, 27, 63);
+    color: white;
+}
+
+/* .pro_price{
+    float: right;
+} */
+
+
+.cart_design{
+    border: 2px solid black;
+    width: 600px;
+    /* padding: 30px 20px; */
+    margin: 10px;
+    list-style: none;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.cart_design:hover{
+    background-color: black;
+    color: white;
+}
+
+.flex_cart{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.cart_con{
+    padding: 40px 20px;
+}
+
+.remove{
+    position: absolute;
+    right: 4px;
+    top: 2px;
+}
+
+.cart_but{
+    padding: 2px 6px;
+    border-radius: 4px;
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+    cursor: pointer;
+
+}
+
+.cart_but:hover{
+   background-color: white;
+   color: black;
+   font-weight: 700;
+}
+
+.Order_but{
+     padding: 10px 15px;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+    margin-left: 5px;
+    width: 200px;
+}
+
+.Order_but:hover{
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+}
+
+.cart_datas{
+   display: flex;
+   flex-direction: column;
+   align-items: start;
+   justify-content: center;
+    overflow: hidden;
+
+}
+
+.cart_back{
+  background-image: url('/src/assets/cart.jpg');
+  height: 600px;
+  /* width: 100%; */
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+  padding: 30px;
+}

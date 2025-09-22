@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import "./Product.css";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Products = () => {
   const [selectedItems, setSelectedItems] = useState([]);
+  const navigate = useNavigate();
 
   const [products, setProducts] = useState([
     {
@@ -11,27 +14,36 @@ const Products = () => {
       variants: [
         {
           name: "Red Apple",
-          quantity: 1,
+          baseQuantity: 1,
           unit: "kg",
           pricePerUnit: 160,
           origin: "Kashmir",
-          stock: 50,
+          stock: 8,
+          count: 1,
+          isSingle: true
+
         },
         {
           name: "Green Apple",
-          quantity: 500,
+          baseQuantity: 500,
           unit: "g",
           pricePerUnit: 140,
           origin: "USA",
-          stock: 30,
+          stock: 7,
+          count: 1,
+          isSingle: true
+
         },
         {
           name: "Golden Apple",
-          quantity: 1,
+          baseQuantity: 1,
           unit: "kg",
           pricePerUnit: 180,
           origin: "Himachal",
-          stock: 40,
+          stock: 8,
+          count: 1,
+          isSingle: true
+
         },
       ],
     },
@@ -41,19 +53,25 @@ const Products = () => {
       variants: [
         {
           name: "Robusta Banana",
-          quantity: 1,
+          baseQuantity: 1,
           unit: "dozen",
           pricePerUnit: 60,
           origin: "Kerala",
-          stock: 100,
+          stock: 10,
+          count: 1,
+          isSingle: true
+
         },
         {
           name: "Yelakki Banana",
-          quantity: 500,
+          baseQuantity: 500,
           unit: "g",
           pricePerUnit: 45,
           origin: "Tamil Nadu",
-          stock: 70,
+          stock: 7,
+          count: 1,
+          isSingle: true
+
         },
       ],
     },
@@ -63,27 +81,36 @@ const Products = () => {
       variants: [
         {
           name: "Cow Milk",
-          quantity: 1,
+          baseQuantity: 1,
           unit: "litre",
           pricePerUnit: 60,
           fat: "3.5%",
-          stock: 200,
+          stock: 9,
+          count: 1,
+          isSingle: true
+
         },
         {
           name: "Buffalo Milk",
-          quantity: 2,
+          baseQuantity: 2,
           unit: "litre",
           pricePerUnit: 70,
           fat: "6%",
-          stock: 150,
+          stock: 8,
+          count: 1,
+          isSingle: true
+
         },
         {
           name: "Organic Cow Milk",
-          quantity: 1,
+          baseQuantity: 1,
           unit: "litre",
           pricePerUnit: 75,
           fat: "4%",
-          stock: 80,
+          stock: 8,
+          count: 1,
+          isSingle: true
+
         },
       ],
     },
@@ -93,27 +120,36 @@ const Products = () => {
       variants: [
         {
           name: "White Bread",
-          quantity: 1,
+          baseQuantity: 1,
           unit: "loaf",
           pricePerUnit: 40,
           expiry: "3 days",
-          stock: 80,
+          stock: 8,
+          count: 1,
+          isSingle: true
+
         },
         {
           name: "Brown Bread",
-          quantity: 1,
+          baseQuantity: 1,
           unit: "loaf",
           pricePerUnit: 50,
           expiry: "4 days",
-          stock: 60,
+          stock: 6,
+          count: 1,
+          isSingle: true
+
         },
         {
           name: "Multigrain Bread",
-          quantity: 1,
+          baseQuantity: 1,
           unit: "loaf",
           pricePerUnit: 55,
           expiry: "5 days",
-          stock: 45,
+          stock: 5,
+          count: 1,
+          isSingle: true
+
         },
       ],
     },
@@ -123,27 +159,36 @@ const Products = () => {
       variants: [
         {
           name: "Salted Butter",
-          quantity: 500,
+          baseQuantity: 500,
           unit: "g",
           pricePerUnit: 120,
           brand: "Amul",
-          stock: 40,
+          stock: 6,
+          count: 1,
+          isSingle: true
+
         },
         {
           name: "Unsalted Butter",
-          quantity: 250,
+          baseQuantity: 250,
           unit: "g",
           pricePerUnit: 100,
           brand: "Britannia",
-          stock: 25,
+          stock: 8,
+          count: 1,
+          isSingle: true
+
         },
         {
           name: "Herb Butter",
-          quantity: 200,
+          baseQuantity: 200,
           unit: "g",
           pricePerUnit: 150,
           brand: "Local",
-          stock: 20,
+          stock: 8,
+          count: 1,
+          isSingle: true
+
         },
       ],
     },
@@ -153,27 +198,36 @@ const Products = () => {
       variants: [
         {
           name: "Cheddar Cheese",
-          quantity: 400,
+          baseQuantity: 400,
           unit: "g",
           pricePerUnit: 200,
           brand: "Amul",
-          stock: 30,
+          stock: 6,
+          count: 1,
+          isSingle: true
+
         },
         {
           name: "Mozzarella Cheese",
-          quantity: 250,
+          baseQuantity: 250,
           unit: "g",
           pricePerUnit: 220,
           brand: "Go Cheese",
-          stock: 20,
+          stock: 7,
+          count: 1,
+          isSingle: true
+
         },
         {
           name: "Parmesan Cheese",
-          quantity: 200,
+          baseQuantity: 200,
           unit: "g",
           pricePerUnit: 350,
           brand: "Imported",
-          stock: 15,
+          stock: 9,
+          count: 1,
+          isSingle: true
+
         },
       ],
     },
@@ -183,19 +237,25 @@ const Products = () => {
       variants: [
         {
           name: "Nagpur Orange",
-          quantity: 1,
+          baseQuantity: 1,
           unit: "kg",
           pricePerUnit: 100,
           season: "Winter",
-          stock: 70,
+          stock: 7,
+          count: 1,
+          isSingle: true
+
         },
         {
           name: "Kinnow Orange",
-          quantity: 1,
+          baseQuantity: 1,
           unit: "kg",
           pricePerUnit: 120,
           season: "Spring",
-          stock: 50,
+          stock: 5,
+          count: 1,
+          isSingle: true
+
         },
       ],
     },
@@ -205,27 +265,36 @@ const Products = () => {
       variants: [
         {
           name: "Mango Juice",
-          quantity: 1,
+          baseQuantity: 1,
           unit: "litre",
           pricePerUnit: 120,
           brand: "Tropicana",
-          stock: 90,
+          stock: 9,
+          count: 1,
+          isSingle: true
+
         },
         {
           name: "Orange Juice",
-          quantity: 1,
+          baseQuantity: 1,
           unit: "litre",
           pricePerUnit: 110,
           brand: "Real",
-          stock: 75,
+          stock: 7,
+          count: 1,
+          isSingle: true
+
         },
         {
           name: "Apple Juice",
-          quantity: 1,
+          baseQuantity: 1,
           unit: "litre",
           pricePerUnit: 130,
           brand: "B-Natural",
-          stock: 60,
+          stock: 6,
+          count: 1,
+          isSingle: true
+
         },
       ],
     },
@@ -235,27 +304,36 @@ const Products = () => {
       variants: [
         {
           name: "Potato Chips",
-          quantity: 200,
+          baseQuantity: 200,
           unit: "g",
           pricePerUnit: 50,
           brand: "Lays",
-          stock: 120,
+          stock: 8,
+          count: 1,
+          isSingle: true
+
         },
         {
           name: "Nachos",
-          quantity: 150,
+          baseQuantity: 150,
           unit: "g",
           pricePerUnit: 60,
           brand: "Doritos",
-          stock: 60,
+          stock: 6,
+          count: 1,
+          isSingle: true
+
         },
         {
           name: "Masala Peanuts",
-          quantity: 250,
+          baseQuantity: 250,
           unit: "g",
           pricePerUnit: 80,
           brand: "Haldiram's",
-          stock: 40,
+          stock: 5,
+          count: 1,
+          isSingle: true
+
         },
       ],
     },
@@ -265,19 +343,25 @@ const Products = () => {
       variants: [
         {
           name: "Hybrid Tomato",
-          quantity: 1,
+          baseQuantity: 1,
           unit: "kg",
           pricePerUnit: 80,
           origin: "Local Farm",
-          stock: 100,
+          stock: 10,
+          count: 1,
+          isSingle: true
+
         },
         {
           name: "Cherry Tomato",
-          quantity: 250,
+          baseQuantity: 250,
           unit: "g",
           pricePerUnit: 90,
           origin: "Hydroponic",
-          stock: 50,
+          stock: 5,
+          count: 1,
+          isSingle: true
+
         },
       ],
     },
@@ -287,25 +371,30 @@ const Products = () => {
       variants: [
         {
           name: "English Cucumber",
-          quantity: 500,
+          baseQuantity: 500,
           unit: "g",
           pricePerUnit: 50,
           origin: "Hydroponic",
-          stock: 90,
+          stock: 9,
+          count: 1,
+          isSingle: true
         },
         {
           name: "Desi Cucumber",
-          quantity: 1,
+          baseQuantity: 1,
           unit: "kg",
           pricePerUnit: 70,
           origin: "Local Farm",
-          stock: 75,
+          stock: 7,
+          count: 1,
+          isSingle: true
+
         },
       ],
     },
   ]);
 
-  function increment(productIndex, variantIndex) {
+ function increment(productIndex, variantIndex) {
     setProducts((p) =>
       p.map((product, i) =>
         i === productIndex
@@ -315,10 +404,7 @@ const Products = () => {
                 j === variantIndex
                   ? {
                       ...variant,
-                      quantity:
-                        variant.unit === "g"
-                          ? variant.quantity + 100
-                          : variant.quantity + 1,
+                      count: variant.count + 1,
                     }
                   : variant
               ),
@@ -338,10 +424,7 @@ const Products = () => {
                 j === variantIndex
                   ? {
                       ...variant,
-                      quantity:
-                        variant.unit === "g"
-                          ? variant.quantity - 100
-                          : variant.quantity - 1,
+                      count: Math.max(1, variant.count - 1),
                     }
                   : variant
               ),
@@ -350,35 +433,55 @@ const Products = () => {
       )
     );
   }
+  
+  
+ function addToCart(variants) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  function addToCart(variants) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    const latest = variants.map((variant) => {
+  const latest = variants.map((variant) => {
     const product = products.find((p) => p.category === variant.category);
-    return product.variants.find((v) => v.name === variant.name);
+    const realVariant = product.variants.find((v) => v.name === variant.name);
+
+    const quantity =
+      realVariant.unit === "g"
+        ? realVariant.baseQuantity * realVariant.count
+        : realVariant.count;
+    const price =
+      realVariant.unit === "g"
+        ? (quantity / 1000) * realVariant.pricePerUnit
+        : quantity * realVariant.pricePerUnit;
+
+    return {
+      ...realVariant,
+      category: product.category,
+      quantity, 
+      price,    
+    };
   });
 
-    latest.forEach((variant) => {
-      const existing = cart.find((item) => item.name === variant.name);
+  latest.forEach((variant) => {
+    const existing = cart.find((item) => item.name === variant.name);
 
-      if (existing) {
-        existing.quantity = variant.quantity;
-      } else {
-        cart.push({ ...variant });
-      }
-    });
+    if (existing) {
+      existing.quantity = variant.quantity;
+      existing.price = variant.price;
+    } else {
+      cart.push({ ...variant });
+    }
+  });
 
-    localStorage.setItem("cart", JSON.stringify(cart));
-    alert("Item added to cart");
-    
+  localStorage.setItem("cart", JSON.stringify(cart));
+  toast.success("Items Added");
+  setTimeout(() => {
+    navigate("/cart");
+  }, 1000);
+
   }
+
 
   function handleSelect(product, variant, isChecked) {
     setSelectedItems((prev) => {
-      const updatedVariant = {
-        ...products
-          .find((p) => p.category === product.category)
+      const updatedVariant = { ...products .find((p) => p.category === product.category)
           .variants.find((v) => v.name === variant.name),
         category: product.category,
       };
@@ -397,53 +500,83 @@ const Products = () => {
     });
   }
 
+  function calculate(variant) {
+    return variant.count * variant.pricePerUnit;
+  }
+
   return (
     <div>
       <div className="productback">
         <div className="product_content">
-          {products.map((product, productIndex) => (
-            <div className="main_content">
-              <div className="heading">
-                <h3 className="head_product">{product.category}</h3>
-                <button onClick={() => addToCart( selectedItems.filter((item) => item.category === product.category) )}>
-                  Add to Cart
-                </button>
-              </div>
-              <ul className="list">
-                {product.variants.map((type, variantIndex) => (
-                  <div>
-                    <li>
-                      <input className="input"
-                        type={product.selectionType}
-                        name={product.category}
-                        checked={selectedItems.some(
+          <div>
+            {products.map((product, productIndex) => (
+              <div className="main_content">
+                <div className="heading">
+                  <h3 className="head_product">{product.category}</h3>
+                </div>
+                <ul className="list">
+                  {product.variants.map((type, variantIndex) => (
+                    <div>
+                      <li>
+                        <input
+                          className="input"
+                          type={product.selectionType}
+                          name={product.category}
+                          checked={selectedItems.some(
+                            (item) => item.name === type.name
+                          )}
+                          onChange={(e) =>
+                            handleSelect(product, type, e.target.checked)
+                          }
+                          style={{ accentColor: "black" }}
+                        />{" "}
+
+                        {type.name} {type.baseQuantity} {type.unit}
+                        {selectedItems.some(
                           (item) => item.name === type.name
+                        ) && (
+                          <div className="sec_half">
+                          
+                            <button
+                              onClick={() =>
+                                increment(productIndex, variantIndex)
+                              }
+                            >
+                              +
+                            </button>{" "}
+                            {type.count}{" "}
+                            <button
+                              onClick={() =>
+                                decrement(productIndex, variantIndex)
+                              }
+                            >
+                              -
+                            </button>{" "}$
+                            <span className="pro_price">{calculate(type)}</span>
+
+                          </div>
+
                         )}
-                        onChange={(e) =>
-                          handleSelect(product, type, e.target.checked)
-                        }
-                        style={{ accentColor: "black" }}
-                      />{" "}
-                      {type.name} {type.quantity}
-                      {type.unit}{" "}
-                      <button
-                        onClick={() => increment(productIndex, variantIndex)}
-                      >
-                        +
-                      </button>{" "}
-                      <button
-                        onClick={() => decrement(productIndex, variantIndex)}
-                      >
-                        -
-                      </button>
-                    </li>
-                  </div>
-                ))}
-              </ul>
-            </div>
-          ))}
+
+                      </li>
+                    </div>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
+        {/* <div className="cart_foot">
+          {products.map((product) => (
+           
+          ))}
+        </div> */}
       </div>
+      {/* {products.reduce((total, item) => total + item.baseQuantity * item.count, 0)} */}
+      <div className="Add_cart">
+        <button onClick={() => addToCart(selectedItems)}> Add to Cart </button>
+      </div>
+      <ToastContainer />
     </div>
   );
 };
