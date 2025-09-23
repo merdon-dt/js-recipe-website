@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Product.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -6,8 +6,10 @@ import { useNavigate } from "react-router-dom";
 const Products = () => {
   const [selectedItems, setSelectedItems] = useState([]);
   const navigate = useNavigate();
+  
 
-  const [products, setProducts] = useState([
+  const [products, setProducts] = useState(() => {
+  return JSON.parse(localStorage.getItem("products")) || [
     {
       category: "Apple",
       selectionType: "checkbox", // can select multiple apples
@@ -392,8 +394,15 @@ const Products = () => {
         },
       ],
     },
-  ]);
+  ]
+});
 
+  useEffect(() => {
+    localStorage.setItem("products", JSON.stringify(products));
+
+  },[products])
+
+  
   //count increment 
 
 function increment(productIndex, variantIndex) {
@@ -600,12 +609,13 @@ function calculate(variant) {
                               -
                             </button>{" "}
                            
-                             <span style={{color:"red"}}>Stock left: {type.stock}</span>
+                             
                     
 
                           </div>
 
                         )}
+                        <span style={{color:"red", marginLeft:"20px"}}>Stock left: {type.stock}</span>
 
                       </li>
                     </div>

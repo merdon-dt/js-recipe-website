@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import Products from "./Products";
 
 
 const CartPage = () => {
@@ -10,20 +11,33 @@ const CartPage = () => {
     setCart(savedCart);
   }, []);
 
-  // const clearitem = () => {
-  //   localStorage.removeItem("cart")
-  //   setCart([])
-  // }
-   // const increment = (idx) => {
-  //   const handle = [...cart];
+  
 
-  //   if (handle[idx].unit === "g") {
-  //     handle[idx].baseQuantity += 100;
-  //   } else {
-  //     handle[idx].baseQuantity += 1;
-  //   }
-  //   updateCart(handle);
-  // };
+
+  // checkout 
+
+  const clearitem = () => {
+    let products = JSON.parse(localStorage.getItem("products")) || [] ;
+
+    cart.forEach((cartitem) => {
+      products = products.map((p) => ({
+        ...p, variants: p.variants.map((v) => v.name === cartitem.name
+        
+        ? { ...v, stock: Math.max(0, v.stock - cartitem.count)} : v
+        ),
+      }))
+    })
+
+    localStorage.setItem("products", JSON.stringify(products));
+    localStorage.removeItem("cart");
+    setCart([]);
+
+  }
+
+   
+
+
+  
 
   const updateCart = (newCart) => {
   newCart = newCart.map((item) => ({
@@ -108,7 +122,7 @@ const calculate = (item) => {
         </div>
      
            )}
-      {/* <button onClick={clearitem}>delete Cart </button> */}
+      <button onClick={clearitem}>Checkout</button>
       
     </div>
     <ToastContainer/>
