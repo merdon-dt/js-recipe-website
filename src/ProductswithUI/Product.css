@@ -11,7 +11,7 @@
 .product_content{
     position: absolute;
     top: 0;
-    left: 50%;
+    left: 40%;
     right: 0;
     height: 550px;
     overflow-y: auto;
@@ -37,7 +37,7 @@
 }
 
 .heading{
-     width: 545px;
+     width: 725px;
     height: 80px; 
     background-color: rgb(31, 27, 63);
     margin-top: 40px;
@@ -56,7 +56,7 @@
 }
 
 .list{
-    width: 500px;
+    width: 680px;
     height: 160px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -88,7 +88,7 @@
 }
 
 .sec_half{
-    margin-left: 120px;
+    margin-left: 80px;
 }
 
 .Add_cart button{
@@ -105,9 +105,12 @@
     color: white;
 }
 
-/* .pro_price{
-    float: right;
-} */
+.pro_price{
+    background-color: rgba(31, 27, 63, 0.404);
+    color: white;
+    padding: 3px 5px;
+    font-size: 18px;
+}
 
 
 .cart_design{

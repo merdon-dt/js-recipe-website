@@ -394,68 +394,88 @@ const Products = () => {
     },
   ]);
 
- function increment(productIndex, variantIndex) {
-    setProducts((p) =>
-      p.map((product, i) =>
-        i === productIndex
-          ? {
-              ...product,
-              variants: product.variants.map((variant, j) =>
-                j === variantIndex
-                  ? {
-                      ...variant,
-                      count: variant.count + 1,
-                    }
-                  : variant
-              ),
-            }
-          : product
-      )
-    );
-  }
+  //count increment 
+
+function increment(productIndex, variantIndex) {
+  setProducts((p) =>
+    p.map((product, i) =>
+      i === productIndex
+        ? {
+            ...product,
+            variants: product.variants.map((variant, j) => {
+              if (j === variantIndex) {
+              if(variant.count < variant.stock) {
+                   if (variant.isSingle && variant.count === 1) {
+                    return { ...variant, isSingle: false, count: 2 }; 
+                }
+                   return { ...variant, count: variant.count + 1 };
+               }
+               else {
+                 toast.warn("Out of stock")
+               }
+              }
+              return variant;
+            }),
+          }
+        : product
+    )
+  );
+}
+
+//count decrement
 
   function decrement(productIndex, variantIndex) {
-    setProducts((p) =>
-      p.map((product, i) =>
-        i === productIndex
-          ? {
-              ...product,
-              variants: product.variants.map((variant, j) =>
-                j === variantIndex
-                  ? {
-                      ...variant,
-                      count: Math.max(1, variant.count - 1),
-                    }
-                  : variant
-              ),
-            }
-          : product
-      )
-    );
-  }
+  setProducts((p) =>
+    p.map((product, i) =>
+      i === productIndex
+        ? {
+            ...product,
+            variants: product.variants.map((variant, j) => {
+
+              if (j === variantIndex) {
+                if (!variant.isSingle && variant.count === 2) {
+                  return { ...variant, isSingle: true, count: 1 };
+                }
+                return { ...variant, count: Math.max(1, variant.count - 1) };
+              }
+              return variant;
+            }),
+          }
+        : product
+    )
+  );
+}
   
   
- function addToCart(variants) {
+//Add cart 
+
+function addToCart(variants) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   const latest = variants.map((variant) => {
     const product = products.find((p) => p.category === variant.category);
     const realVariant = product.variants.find((v) => v.name === variant.name);
 
-    const quantity =
-      realVariant.unit === "g"
-        ? realVariant.baseQuantity * realVariant.count
-        : realVariant.count;
-    const price =
-      realVariant.unit === "g"
-        ? (quantity / 1000) * realVariant.pricePerUnit
-        : quantity * realVariant.pricePerUnit;
+    let quantity, price;
+
+    if (realVariant.unit === "g") {
+      if (realVariant.isSingle && realVariant.count === 1) {
+        quantity = realVariant.baseQuantity;
+        price = (realVariant.pricePerUnit / 1000) * realVariant.baseQuantity;
+      } else {
+        quantity = realVariant.baseQuantity * realVariant.count;
+        price = (realVariant.pricePerUnit / 1000) * quantity;
+      }
+    } else {
+      quantity = realVariant.baseQuantity * realVariant.count;
+      price = quantity * realVariant.pricePerUnit;
+    }
 
     return {
       ...realVariant,
       category: product.category,
-      quantity, 
-      price,    
+      quantity,
+      price,
     };
   });
 
@@ -469,15 +489,17 @@ const Products = () => {
       cart.push({ ...variant });
     }
   });
+ 
 
   localStorage.setItem("cart", JSON.stringify(cart));
   toast.success("Items Added");
   setTimeout(() => {
     navigate("/cart");
   }, 1000);
+}
 
-  }
 
+// for check and radio select
 
   function handleSelect(product, variant, isChecked) {
     setSelectedItems((prev) => {
@@ -500,9 +522,29 @@ const Products = () => {
     });
   }
 
-  function calculate(variant) {
-    return variant.count * variant.pricePerUnit;
+  // price
+
+function calculate(variant) {
+
+  let price = 0;
+  
+  if (variant.unit === "g" && !variant.isSingle) {
+    if (variant.count === 1) {
+      price = (variant.pricePerUnit / 1000) * variant.baseQuantity;
+    } else {
+      const perGramPrice = variant.pricePerUnit / 1000;
+      const totalGrams = variant.baseQuantity * variant.count;
+      price = perGramPrice * totalGrams;
+    }
+  } else {
+    price = variant.pricePerUnit * variant.count;
   }
+
+  return price;
+}
+
+
+
 
   return (
     <div>
@@ -510,15 +552,16 @@ const Products = () => {
         <div className="product_content">
           <div>
             {products.map((product, productIndex) => (
-              <div className="main_content">
+              <div className="main_content"  key={productIndex}>
                 <div className="heading">
                   <h3 className="head_product">{product.category}</h3>
                 </div>
                 <ul className="list">
                   {product.variants.map((type, variantIndex) => (
-                    <div>
+                    <div key={variantIndex}>
                       <li>
-                        <input
+                        <label>
+                           <input
                           className="input"
                           type={product.selectionType}
                           name={product.category}
@@ -531,7 +574,11 @@ const Products = () => {
                           style={{ accentColor: "black" }}
                         />{" "}
 
-                        {type.name} {type.baseQuantity} {type.unit}
+                        {type.name} {type.baseQuantity} {type.unit}    {" "} 
+                            <span className="pro_price">Price: {(calculate(type).toFixed(2))}</span>
+                      
+                        </label>
+                       
                         {selectedItems.some(
                           (item) => item.name === type.name
                         ) && (
@@ -551,8 +598,10 @@ const Products = () => {
                               }
                             >
                               -
-                            </button>{" "}$
-                            <span className="pro_price">{calculate(type)}</span>
+                            </button>{" "}
+                           
+                             <span style={{color:"red"}}>Stock left: {type.stock}</span>
+                    
 
                           </div>
 

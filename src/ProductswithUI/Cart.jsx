@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+
 
 const CartPage = () => {
   const [cart, setCart] = useState([]);
@@ -12,90 +14,104 @@ const CartPage = () => {
   //   localStorage.removeItem("cart")
   //   setCart([])
   // }
+   // const increment = (idx) => {
+  //   const handle = [...cart];
+
+  //   if (handle[idx].unit === "g") {
+  //     handle[idx].baseQuantity += 100;
+  //   } else {
+  //     handle[idx].baseQuantity += 1;
+  //   }
+  //   updateCart(handle);
+  // };
 
   const updateCart = (newCart) => {
   newCart = newCart.map((item) => ({
     ...item,
     price:
       item.unit === "g"
-        ? (item.baseQuantity / 1000) * item.pricePerUnit
-        : item.baseQuantity * item.pricePerUnit,
+        ? (item.baseQuantity * item.count) / 1000 * item.pricePerUnit
+        : item.baseQuantity * item.count * item.pricePerUnit,
   }));
 
   setCart(newCart);
   localStorage.setItem("cart", JSON.stringify(newCart));
 };
 
-  const increment = (idx) => {
-    const handle = [...cart];
-
-    if (handle[idx].unit === "g") {
-      handle[idx].baseQuantity += 100;
-    } else {
-      handle[idx].baseQuantity += 1;
-    }
+const increment = (idx) => {
+  const handle = [...cart];
+  if (handle[idx].count < handle[idx].stock) {
+    handle[idx].count += 1;
     updateCart(handle);
-    localStorage.setItem("cart", JSON.stringify(handle));
-  };
+  } else {
+    toast.warning("Out of Stock")
+  }
+};
 
-  const decrement = (idx) => {
-    const handle = [...cart];
+const decrement = (idx) => {
+  const handle = [...cart];
+  handle[idx].count = Math.max(1, handle[idx].count - 1);
+  updateCart(handle);
+};
 
-    if (handle[idx].unit === "g") {
-      handle[idx].baseQuantity = Math.max(100, handle[idx].quantity - 100);
-    } else {
-      handle[idx].baseQuantity = Math.max(1 , handle[idx].quantity - 1);
-    }
-    updateCart(handle);
-    localStorage.setItem("cart", JSON.stringify(handle));
-  };
+const calculate = (item) => {
+  return item.unit === "g"
+    ? (item.baseQuantity * item.count) / 1000 * item.pricePerUnit
+    : item.baseQuantity * item.count * item.pricePerUnit;
+};
 
-  const remove = (idx) => {
+   const remove = (idx) => {
     const rmv = [...cart];
     rmv.splice(idx, 1);
     updateCart(rmv);
     localStorage.setItem("cart", JSON.stringify(rmv));
   };
 
-  const calculate = (item) => {
-     if(item.unit === "g"){
-       return(item.baseQuantity / 1000) * item.pricePerUnit
-     }
-     else{
-      return item.baseQuantity * item.pricePerUnit
-     }
-  }
-
   return (
-    <div className="cart_back">
-      {cart.length === 0 ? (
+    <div>
+      <div className="cart_back">
+        {cart.length === 0 ? (
         <p>No items in cart</p>
       ) : (
-        <div className="cart_datas">
-          {cart.map((item, i) => (
-            <div className="cart_design">
-              <div className="flex_cart">
-                <div className="cart_con">
-                
-                  {item.name} [ {item.baseQuantity} {item.unit}]{" "} 
-                  <button onClick={() => increment(i)}>+</button>{" "}
-                  <button onClick={() => decrement(i)}>-</button> {" "} | Price: {item.price}
-                 
-                </div>
-                 <div className="remove">
-                  
-                    <button className="cart_but" onClick={() => remove(i)}>x</button>
-                  </div>
-              </div>
-            </div>
-          ))}
-              
-           <h3 style={{marginLeft:"10px"}}>  Total Price:{" "}
-  {cart.reduce((total, item) => total + calculate(item), 0)}</h3>
-          <button className="Order_but">Place Order</button>
+        <div>
+          
+           {cart.map((item, i) => (
+  <div className="cart_design" key={i}>
+    <div className="flex_cart">
+      <div className="cart_con">
+        {item.name} {" "} 
+        <button 
+          onClick={() => increment(i)} 
+        >
+          +
+        </button>{" "} 
+        {item.count} {" "} 
+        <button onClick={() => decrement(i)}>-</button> {" "} 
+
+        | Price: {item.price.toFixed(2)} {" "} 
+        | 
+            <span style={{color:"red"}}>Stock left: {item.stock}</span>
+        
+      </div>
+      <div className="remove">
+        <button className="cart_but" onClick={() => remove(i)}>x</button>
+      </div>
+    </div>
+
+
+  </div>
+))}
+
+<h3 style={{marginLeft:"10px"}}>  Total Price:{" "}
+           {cart.reduce((total, item) => total + calculate(item), 0)}</h3>
+           
         </div>
-      )}
+     
+           )}
       {/* <button onClick={clearitem}>delete Cart </button> */}
+      
+    </div>
+    <ToastContainer/>
     </div>
   );
 };

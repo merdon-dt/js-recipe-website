@@ -40,10 +40,9 @@ import OrderList from './Orderlist'
 import { OrderProvider } from './OrderContext'
 import Demo2 from './Demo2'
 import Products from './ProductswithUI/Products'
-import Product from './ProductswithUI/Product2'
 import CartPage from './ProductswithUI/Cart'
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Product2 from './ProductswithUI/Product2'
+// import Product2 from './ProductswithUI/Product2'
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -100,7 +99,7 @@ const App = () => {
       </div>
     </OrderProvider> */}
       
-       {/* <Router>
+       <Router>
       <nav style={{ marginBottom: "20px" }}>
         <Link to="/">Products</Link> | <Link to="/cart">Cart</Link>
       </nav>
@@ -109,9 +108,9 @@ const App = () => {
         <Route path="/" element={<Products />} />
         <Route path="/cart" element={<CartPage />} />
       </Routes>
-    </Router> */}
+    </Router>
 
-    <Product2/>
+    {/* <Product2/> */}
       
       
     </div>
