@@ -11,6 +11,7 @@ const Demo2 = () => {
         setresult("even")
           
        }
+
        else{
         setresult("odd")
        }

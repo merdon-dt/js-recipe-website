@@ -44,6 +44,7 @@ import CartPage from './ProductswithUI/Cart'
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 // import Product2 from './ProductswithUI/Product2'
 import 'react-toastify/dist/ReactToastify.css';
+import Pract from './pract'
 
 
 
@@ -111,6 +112,8 @@ const App = () => {
     </Router>
 
     {/* <Product2/> */}
+
+    {/* <Pract/> */}
       
       
     </div>
