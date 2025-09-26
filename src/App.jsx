@@ -45,6 +45,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 // import Product2 from './ProductswithUI/Product2'
 import 'react-toastify/dist/ReactToastify.css';
 import Pract from './pract'
+import Sample from './Sample'
 
 
 
@@ -114,6 +115,7 @@ const App = () => {
     {/* <Product2/> */}
 
     {/* <Pract/> */}
+    {/* <Sample/> */}
       
       
     </div>

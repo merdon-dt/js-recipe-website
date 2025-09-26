@@ -31,6 +31,7 @@ const Products = () => {
             stock: 8,
             count: 1,
             isSingle: true,
+            discount: 10,
           },
           {
             name: "Green Apple",
@@ -41,6 +42,7 @@ const Products = () => {
             stock: 7,
             count: 1,
             isSingle: true,
+            discount: 20,
           },
           {
             name: "Golden Apple",
@@ -51,6 +53,7 @@ const Products = () => {
             stock: 8,
             count: 1,
             isSingle: true,
+            discount: 10,
           },
         ],
       },
@@ -67,6 +70,7 @@ const Products = () => {
             stock: 10,
             count: 1,
             isSingle: true,
+            discount: 10,
           },
           {
             name: "Yelakki Banana",
@@ -77,6 +81,7 @@ const Products = () => {
             stock: 7,
             count: 1,
             isSingle: true,
+            discount: 10,
           },
         ],
       },
@@ -93,6 +98,7 @@ const Products = () => {
             stock: 9,
             count: 1,
             isSingle: true,
+            discount: 10,
           },
           {
             name: "Buffalo Milk",
@@ -103,6 +109,7 @@ const Products = () => {
             stock: 8,
             count: 1,
             isSingle: true,
+            discount: 10,
           },
           {
             name: "Organic Cow Milk",
@@ -113,6 +120,7 @@ const Products = () => {
             stock: 8,
             count: 1,
             isSingle: true,
+            discount: 30,
           },
         ],
       },
@@ -129,6 +137,7 @@ const Products = () => {
             stock: 8,
             count: 1,
             isSingle: true,
+            discount: 10,
           },
           {
             name: "Brown Bread",
@@ -139,6 +148,7 @@ const Products = () => {
             stock: 6,
             count: 1,
             isSingle: true,
+            discount: 20,
           },
           {
             name: "Multigrain Bread",
@@ -149,6 +159,7 @@ const Products = () => {
             stock: 5,
             count: 1,
             isSingle: true,
+            discount: 30,
           },
         ],
       },
@@ -165,6 +176,7 @@ const Products = () => {
             stock: 6,
             count: 1,
             isSingle: true,
+            discount: 20,
           },
           {
             name: "Unsalted Butter",
@@ -175,6 +187,7 @@ const Products = () => {
             stock: 8,
             count: 1,
             isSingle: true,
+            discount: 10,
           },
           {
             name: "Herb Butter",
@@ -185,6 +198,7 @@ const Products = () => {
             stock: 8,
             count: 1,
             isSingle: true,
+            discount: 20,
           },
         ],
       },
@@ -201,6 +215,7 @@ const Products = () => {
             stock: 6,
             count: 1,
             isSingle: true,
+            discount: 10,
           },
           {
             name: "Mozzarella Cheese",
@@ -211,6 +226,7 @@ const Products = () => {
             stock: 7,
             count: 1,
             isSingle: true,
+            discount: 40,
           },
           {
             name: "Parmesan Cheese",
@@ -221,6 +237,7 @@ const Products = () => {
             stock: 9,
             count: 1,
             isSingle: true,
+            discount: 30,
           },
         ],
       },
@@ -237,6 +254,7 @@ const Products = () => {
             stock: 7,
             count: 1,
             isSingle: true,
+            discount: 20,
           },
           {
             name: "Kinnow Orange",
@@ -247,6 +265,7 @@ const Products = () => {
             stock: 5,
             count: 1,
             isSingle: true,
+            discount: 50,
           },
         ],
       },
@@ -263,6 +282,7 @@ const Products = () => {
             stock: 9,
             count: 1,
             isSingle: true,
+            discount: 30,
           },
           {
             name: "Orange Juice",
@@ -273,6 +293,7 @@ const Products = () => {
             stock: 7,
             count: 1,
             isSingle: true,
+            discount: 30,
           },
           {
             name: "Apple Juice",
@@ -283,6 +304,7 @@ const Products = () => {
             stock: 6,
             count: 1,
             isSingle: true,
+            discount: 40,
           },
         ],
       },
@@ -299,6 +321,7 @@ const Products = () => {
             stock: 8,
             count: 1,
             isSingle: true,
+            discount: 20,
           },
           {
             name: "Nachos",
@@ -309,6 +332,7 @@ const Products = () => {
             stock: 6,
             count: 1,
             isSingle: true,
+            discount: 40,
           },
           {
             name: "Masala Peanuts",
@@ -319,6 +343,7 @@ const Products = () => {
             stock: 5,
             count: 1,
             isSingle: true,
+            discount: 20,
           },
         ],
       },
@@ -335,6 +360,7 @@ const Products = () => {
             stock: 10,
             count: 1,
             isSingle: true,
+            discount: 40,
           },
           {
             name: "Cherry Tomato",
@@ -345,6 +371,7 @@ const Products = () => {
             stock: 5,
             count: 1,
             isSingle: true,
+            discount: 10,
           },
         ],
       },
@@ -361,6 +388,7 @@ const Products = () => {
             stock: 9,
             count: 1,
             isSingle: true,
+            discount: 20,
           },
           {
             name: "Desi Cucumber",
@@ -371,6 +399,7 @@ const Products = () => {
             stock: 7,
             count: 1,
             isSingle: true,
+            discount: 10,
           },
         ],
       },
@@ -525,29 +554,36 @@ const Products = () => {
       price = variant.pricePerUnit * variant.count;
     }
 
+    if (variant.discount) {
+      price = price - (price * variant.discount) / 100;
+    }
+
     return price;
   }
 
+  //sort and filter
 
-const sortedProducts = useMemo(() => {
-  if (!search) return products;
+  // NEW: compute sortedProducts
+  const sortedProducts = useMemo(() => {
+    if (!search) return products;
 
-  const match = [];
-  const rest = [];
+    // Put categories with matching variants first
+    const match = [];
+    const rest = [];
 
-  products.forEach((product) => {
-    const hasMatch = product.variants.some((v) =>
-      v.name.toLowerCase().includes(search.toLowerCase())
-    );
-    if (hasMatch) {
-      match.push(product);
-    } else {
-      rest.push(product);
-    }
-  });
+    products.forEach((product) => {
+      const hasMatch = product.variants.some((v) =>
+        v.name.toLowerCase().includes(search.toLowerCase())
+      );
+      if (hasMatch) {
+        match.push(product);
+      } else {
+        rest.push(product);
+      }
+    });
 
-  return [...match, ...rest];
-}, [products, search]);
+    return [...match, ...rest];
+  }, [products, search]);
 
   return (
     <div>
@@ -559,66 +595,85 @@ const sortedProducts = useMemo(() => {
                 type="text"
                 value={search}
                 onChange={(e) => setsearch(e.target.value)}
+                placeholder=" search here..."
               />
             </div>
-
-
-             {sortedProducts.map((product, productIndex) => (
+            {products.map((product, productIndex) => (
               <div className="main_content" key={productIndex}>
-                <div className="heading">
-                  <h3 className="head_product">{product.category}</h3>
-                </div>
-                <ul className="list">
-                  {product.variants.map((type, variantIndex) => (
-                    <div key={variantIndex}>
-                      <li>
-                        <label>
-                          <input
-                            className="input"
-                            type={product.selectionType}
-                            name={product.category}
-                            checked={selectedItems.some(
-                              (item) => item.name === type.name
-                            )}
-                            onChange={(e) =>
-                              handleSelect(product, type, e.target.checked)
-                            }
-                            style={{ accentColor: "black" }}
-                          />{" "}
-                          {type.name} {type.baseQuantity} {type.unit}{" "}
-                          <span className="pro_price">
-                            Price: {calculate(type).toFixed(2)}
-                          </span>
-                        </label>
-
-                        {selectedItems.some(
-                          (item) => item.name === type.name
-                        ) && (
-                          <div className="sec_half">
-                            <button
-                              onClick={() =>
-                                increment(productIndex, variantIndex)
-                              }
-                            >
-                              +
-                            </button>{" "}
-                            {type.count}{" "}
-                            <button
-                              onClick={() =>
-                                decrement(productIndex, variantIndex)
-                              }
-                            >
-                              -
-                            </button>{" "}
-                          </div>
-                        )}
-                        <span style={{ color: "red", marginLeft: "20px" }}>
-                          Stock left: {type.stock}
-                        </span>
-                      </li>
+                {sortedProducts.map((product, productIndex) => (
+                  <div className="main_content" key={productIndex}>
+                    <div className="heading">
+                      <h3 className="head_product">{product.category}</h3>
                     </div>
-                  ))}
-                </ul>
+                    <ul className="list">
+                      {product.variants.map((type, variantIndex) => (
+                        <div key={variantIndex}>
+                          <li>
+                            <label>
+                              <input
+                                className="input"
+                                type={product.selectionType}
+                                name={product.category}
+                                checked={selectedItems.some(
+                                  (item) => item.name === type.name
+                                )}
+                                onChange={(e) =>
+                                  handleSelect(product, type, e.target.checked)
+                                }
+                                style={{ accentColor: "black" }}
+                              />{" "}
+                              {type.name} {type.baseQuantity} {type.unit}{" "}
+                              <span className="pro_price">
+                                Price: ₹{calculate(type).toFixed(2)}{" "}
+                                {type.discount > 0 && (
+                                  <span
+                                    style={{
+                                      color: "green",
+                                      marginLeft: "10px",
+                                    }}
+                                  >
+                                    ({type.discount}% OFF)
+                                  </span>
+                                )}
+                              </span>
+                            </label>
+
+                            {selectedItems.some(
+                              (item) => item.name === type.name
+                            ) && (
+                              <div className="sec_half">
+                                <button
+                                  onClick={() =>
+                                    increment(productIndex, variantIndex)
+                                  }
+                                >
+                                  +
+                                </button>{" "}
+                                {type.count}{" "}
+                                <button
+                                  onClick={() =>
+                                    decrement(productIndex, variantIndex)
+                                  }
+                                >
+                                  -
+                                </button>{" "}
+                              </div>
+                            )}
+                            <span style={{ color: "red", marginLeft: "20px" }}>
+                              {" "}
+                              {type.count > 5 ? (
+                                <span style={{ color: "red" }}>
+                                  {" "}
+                                  Stock Left:{type.stock - type.count}
+                                </span>
+                              ) : null}
+                            </span>
+                          </li>
+                        </div>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
             ))}
           </div>
@@ -639,4 +694,3 @@ const sortedProducts = useMemo(() => {
 };
 
 export default Products;
-
