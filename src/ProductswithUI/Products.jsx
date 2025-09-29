@@ -62,6 +62,7 @@ const Products = () => {
             storageTip: "Store in cool dry place or refrigerate for freshness.",
             packaging: "Biodegradable bag with moisture control lining.",
             harvestSeason: "August to October",
+             img: image.Apple
           },
           {
             name: "Golden Apple",
@@ -81,6 +82,7 @@ const Products = () => {
             storageTip: "Keep in refrigerator crisper drawer.",
             packaging: "Eco-friendly mesh bags.",
             harvestSeason: "September to November",
+             img: image.Apple
           },
         ],
       },
@@ -107,6 +109,7 @@ const Products = () => {
               "Keep at room temperature; avoid refrigeration before ripening.",
             packaging: "Wrapped in banana leaf eco packs.",
             harvestSeason: "Year-round",
+            img: image.Banana
           },
           {
             name: "Yelakki Banana",
@@ -126,6 +129,7 @@ const Products = () => {
             storageTip: "Store in a cool dry place; do not refrigerate.",
             packaging: "Natural jute wrap with cushioning.",
             harvestSeason: "March to November",
+            img: image.Banana
           },
         ],
       },
@@ -150,6 +154,7 @@ const Products = () => {
             storageTip: "Refrigerate below 4°C and consume within 3 days.",
             packaging: "HDPE bottle, tamper-evident seal.",
             processInfo: "Pasteurized and homogenized",
+            img: image.Milk
           },
           {
             name: "Buffalo Milk",
@@ -168,6 +173,7 @@ const Products = () => {
             storageTip: "Consume within 2 days of opening.",
             packaging: "2L pouch with thermal insulation.",
             processInfo: "Double pasteurized",
+             img: image.Milk
           },
           {
             name: "Organic Cow Milk",
@@ -186,6 +192,7 @@ const Products = () => {
             storageTip: "Keep refrigerated and shake before use.",
             packaging: "Glass bottle, reusable.",
             processInfo: "Unprocessed, A2 certified",
+             img: image.Milk
           },
         ],
       },
@@ -210,6 +217,7 @@ const Products = () => {
             storageTip: "Keep in airtight bag at room temperature.",
             packaging: "Plastic wrap with easy-seal clip.",
             ingredients: "Refined wheat flour, yeast, sugar, salt",
+            img: image.Bread
           },
           {
             name: "Brown Bread",
@@ -229,6 +237,7 @@ const Products = () => {
             storageTip: "Keep in bread box or refrigerator.",
             packaging: "Brown paper wrap with transparent window.",
             ingredients: "Whole wheat flour, bran, vegetable oil",
+            img: image.Bread
           },
           {
             name: "Multigrain Bread",
@@ -248,6 +257,7 @@ const Products = () => {
             storageTip: "Refrigerate after opening.",
             packaging: "Zip-lock recyclable plastic wrap.",
             ingredients: "Wheat, oats, barley, flaxseeds, millet",
+            img: image.Bread
           },
         ],
       },
@@ -636,6 +646,8 @@ const Products = () => {
 
   const [search, setsearch] = useState("");
 
+ 
+
   //count increment
 
   function increment(productIndex, variantIndex) {
@@ -686,15 +698,16 @@ const Products = () => {
     );
   }
 
-  //Add cart
 
   // Add cart
   function addToCart(variants) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
 
     const latest = variants.map((variant) => {
       const product = products.find((p) => p.category === variant.category);
       const realVariant = product.variants.find((v) => v.name === variant.name);
+      
 
       let quantity, price;
 
@@ -719,6 +732,7 @@ const Products = () => {
         tax,
         price: finalPrice,
       };
+      
     });
 
     latest.forEach((variant) => {
@@ -784,44 +798,6 @@ const Products = () => {
     }
   }
 
-  //    function handleSelect(product, variant, isChecked) {
-  //   setSelectedItems((prev) => {
-  //     const updatedVariant = {
-  //       ...products
-  //         .find((p) => p.category === product.category)
-  //         .variants.find((v) => v.name === variant.name),
-  //       category: product.category,
-
-  //     };
-
-  //     if (product.selectionType === "radio") {
-  //       return prev
-  //         .filter((item) => item.category !== product.category)
-  //         .concat(updatedVariant);
-  //     } else {
-  //       if (isChecked) {
-  //         return [...prev, updatedVariant];
-  //       } else {
-  //         return prev.filter((item) => item.name !== variant.name);
-  //       }
-  //     }
-  //   });
-
-  // }
-
-  // price
-
-  // const calculate = (type) => {
-  //   const base =
-  //     type.unit === "g"
-  //       ? (type.baseQuantity * type.count) / 1000 * type.pricePerUnit
-  //       : type.baseQuantity * type.count * type.pricePerUnit;
-
-  //   const tax = type.taxRate ? base * type.taxRate : 0;
-
-  //   return base + tax;
-  // };
-
   const sortedProducts = useMemo(() => {
     const sortVariants = (variants) =>
       [...variants].sort((a, b) => a.pricePerUnit - b.pricePerUnit);
@@ -842,7 +818,7 @@ const Products = () => {
 
   const clear = () => {
     setsearch("");
-    
+
   };
 
   return (
@@ -928,12 +904,13 @@ const Products = () => {
                           </div>
                         )}
                         <span style={{ color: "red", marginLeft: "20px" }}>
-                          {type.stock < 3 && (
+                          {type.count > 3 && (
                             <span style={{ color: "red", marginLeft: "20px" }}>
-                              Stock limit: {type.stock}
+                              Stock limit: {type.stock - type.count}
                             </span>
                           )}
                         </span>
+                        
                       </li>
                     </div>
                   ))}

@@ -1,37 +1,72 @@
-import { useParams } from "react-router-dom";
-import "./category.css";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import Products from "./Products";
 
-const CategoryPage = () => {
-  const [cartdata, setcartdata] = useState([]);
+const CartPage = () => {
+  const [cart, setCart] = useState([]);
 
-  const { categoryName } = useParams();
-  const products = JSON.parse(localStorage.getItem("products")) || [];
+  useEffect(() => {
+    const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    updateCart(savedCart);
+  }, []);
 
-  const categoryProducts = products.filter((p) => p.category === categoryName);
+  // checkout
 
-  const updateCart = (newCart) => {
-    newCart = newCart.map((item) => {
-        const Pricewithtax = item.price * item.count;
+  const clearitem = () => {
+    let products = JSON.parse(localStorage.getItem("products")) || [];
 
-        const finalprice = item.discount 
-        ?
-        Pricewithtax - (Pricewithtax * item.discount) / 100
-        : Pricewithtax;
-
-        return {
-            ...item,
-            Pricewithtax,
-            finalprice
-        };
+    cart.forEach((cartitem) => {
+      products = products.map((p) => ({
+        ...p,
+        variants: p.variants.map((v) =>
+          v.name === cartitem.name
+            ? { ...v, stock: Math.max(0, v.stock - cartitem.count) }
+            : v
+        ),
+      }));
     });
 
-    setcartdata(newCart);
-    localStorage.setItem("cart", JSON.stringify(newCart));
+    localStorage.setItem("products", JSON.stringify(products));
+    localStorage.removeItem("cart");
+    setCart([]);
+  };
+
+  const updateCart = (newCart) => {
+    const updatedCart = newCart.map((item) => {
+     const basePrice =
+        item.unit === "g"
+          ? ((item.baseQuantity * item.count) / 1000) * item.pricePerUnit
+          : item.baseQuantity * item.count * item.pricePerUnit;
+
+          const price =  basePrice;
+          const discountAmount = item.discount
+        ? (price * item.discount) / 100
+        : 0;
+
+      const priceAfterDiscount = price - discountAmount;
+
+      const taxAmount = item.taxRate
+        ? (priceAfterDiscount * item.taxRate) / 100
+        : 0;
+
+      const finalPrice = priceAfterDiscount + taxAmount;
+
+      return {
+        ...item,
+        basePrice,
+        discountAmount,
+        taxAmount,
+        finalPrice,
+        price,
+      };
+    });
+
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
   const increment = (idx) => {
-    const handle = [...cartdata];
+    const handle = [...cart];
     if (handle[idx].count < handle[idx].stock) {
       handle[idx].count += 1;
       updateCart(handle);
@@ -41,47 +76,70 @@ const CategoryPage = () => {
   };
 
   const decrement = (idx) => {
-    const handle = [...cartdata];
+    const handle = [...cart];
     handle[idx].count = Math.max(1, handle[idx].count - 1);
     updateCart(handle);
   };
 
+  const remove = (idx) => {
+    const rmv = [...cart];
+    rmv.splice(idx, 1);
+    updateCart(rmv);
+    localStorage.setItem("cart", JSON.stringify(rmv));
+  };
+
   return (
     <div>
-      {categoryProducts.map((product) => (
-        <div className="">
-          <h2>{product.category}</h2>
-          {product.variants.map((v, i) => (
-            <div className="Productlist" key={i}>
-              <img src={v.img} height={400} width={400} alt="" />
-              <div>
-                <h1>{product.category}</h1>
-                <p>{v.description}</p>
-                <h3>{v.name} </h3>
-                <h3> </h3>{" "}
-                {/* <div>Tax ({(v.taxRate * 100).toFixed(0)}%)</div> */}
-                <p>
-                  Select Quantity:
-                  <button onClick={() => increment(i)}>+</button> {v.count}{" "}
-                  <button onClick={() => decrement(i)}>-</button>
-                </p>
-                <h3 style={{ color: "green" }}>
-                  Price:{" "}
-                  {(v.unit === "g"
-                    ? ((v.baseQuantity * v.count) / 1000) * v.pricePerUnit
-                    : v.baseQuantity * v.count * v.pricePerUnit
-                  ).toFixed(2)}{" "}
-                  <span style={{ color: "red" }}>
-                    (diccount: {v.discount}%)
-                  </span>
-                </h3>
-                <h4>Select Variants</h4>
+      <div className="cart_back">
+        {cart.length === 0 ? (
+          <p>No items in cart</p>
+        ) : (
+          <div>
+            {cart.map((item, i) => (
+              <div className="cart_design" key={i}>
+                <div className="flex_cart">
+                  <div className="cart_con">
+                    {item.name} <button onClick={() => increment(i)}>+</button>{" "}
+                    {item.count} <button onClick={() => decrement(i)}>-</button>{" "}
+
+                     Price: {item.price.toFixed(2)} <br />
+                    {item.discount ? (
+                      <span>Discount ({item.discount}%): -{item.discountAmount.toFixed(2)}</span>
+                    ) : null}
+                    <br />
+                    {item.taxRate ? (
+                      <span>
+                        Tax ({item.taxRate}%): +{item.taxAmount.toFixed(2)}
+                      </span>
+                    ) : null}
+                    <br />
+                    <b>Final Price: {item.finalPrice.toFixed(2)}</b>
+                  
+                  </div>
+                  <div className="remove">
+                    <button className="cart_but" onClick={() => remove(i)}>
+                      x
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      ))}
+            ))}
+
+            <h3 style={{ marginLeft: "10px" }}>
+              Total Price:{" "}
+              {cart
+                .reduce((total, item) => total + item.finalPrice, 0)
+                .toFixed(2)}
+            </h3>
+          </div>
+        )}
+        <button onClick={clearitem}>Checkout</button>
+      </div>
+      <ToastContainer />
     </div>
   );
 };
-export default CategoryPage;
+
+export default CartPage;
+
+
