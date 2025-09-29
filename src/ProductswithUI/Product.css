@@ -37,7 +37,7 @@
 }
 
 .heading{
-     width: 725px;
+     width: 785px;
     height: 80px; 
     background-color: rgb(31, 27, 63);
     margin-top: 40px;
@@ -56,7 +56,7 @@
 }
 
 .list{
-    width: 680px;
+    width: 740px;
     height: 160px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -88,7 +88,7 @@
 }
 
 .sec_half{
-    margin-left: 80px;
+    margin-left: 20px;
 }
 
 .Add_cart button{
@@ -130,13 +130,16 @@
 
 .flex_cart{
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: start;
     justify-content: space-between;
     position: relative;
+    gap: 0;
+    padding: 40px 0;
 }
 
 .cart_con{
-    padding: 40px 20px;
+    padding: 0px 20px;
 }
 
 .remove{
@@ -207,5 +210,11 @@
     height: 30px;
     width: 400px;
      font-size: 16px;
+     position: relative;
+}
+
+.clear{
+    position: absolute;
+    left: 72%;
 }
 

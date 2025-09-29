@@ -1,58 +1,57 @@
-import React from 'react'
-import Task from './task1'
-import OddorEven from '../OddorEven'
-import Calculator from './Calculator'
-import Mark from './Mark'
-import Divisiblecheck from './Divisiblecheck'
-import PrimeNumber from './PrimeNumber'
-import TimeFormat from './TimeFormat'
-import TimeFind from './TimeFind'
-import Cart from './Cart'
-import Print1to10 from './Forloop/Print1to10'
-import PrintEven1to20 from './Forloop/PrintEven1to20'
-import PrintReverse from './Forloop/PrintReverse'
-import Sumofnumbers from './Forloop/Sumofnumbers'
-import Divisibleby3 from './Forloop/Divisibleby3'
-import Reversestring from './Forloop/Reversestring'
-import Factorial from './Forloop/Factorial'
-import Arraynumber from './Forloop/Arraynumber'
-import ArrayNumberadd from './Forloop/ArrayNumberadd'
-import Findbig from './Forloop/Findbig'
-import Vowels from './Forloop/Vowels'
-import Fibonacci from './Forloop/Fibonacci'
-import Starprinting from './Forloop/Starprinting'
-import Number from './Forloop/numberPrint'
-import ArrayKeyandObject from './Forloop/ArrayKeyandObject'
-import Printusername from './Printusername'
-import Printtotalprice from './Printtotalprice'
-import PrinthighProduct from './PrinthighProduct'
-import Hobbies from './Forloop/Hobbies'
-import Average from './Forloop/Average'
-import PrintCities from './Forloop/PrintCities'
-import Orders from './Forloop/Orders'
-import CartAdding from './Forloop/CartAdding'
-import Orders2 from './Forloop/Orders2'
-import Twistedorder from './Forloop/Twistedorder'
-import Orderstwisted from './Forloop/Orderstwisted'
-import Demo from './Forloop/Demo'
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import OrderList from './Orderlist'
-import { OrderProvider } from './OrderContext'
-import Demo2 from './Demo2'
-import Products from './ProductswithUI/Products'
-import CartPage from './ProductswithUI/Cart'
+import React, { useState } from "react";
+import Task from "./task1";
+import OddorEven from "../OddorEven";
+import Calculator from "./Calculator";
+import Mark from "./Mark";
+import Divisiblecheck from "./Divisiblecheck";
+import PrimeNumber from "./PrimeNumber";
+import TimeFormat from "./TimeFormat";
+import TimeFind from "./TimeFind";
+import Cart from "./Cart";
+import Print1to10 from "./Forloop/Print1to10";
+import PrintEven1to20 from "./Forloop/PrintEven1to20";
+import PrintReverse from "./Forloop/PrintReverse";
+import Sumofnumbers from "./Forloop/Sumofnumbers";
+import Divisibleby3 from "./Forloop/Divisibleby3";
+import Reversestring from "./Forloop/Reversestring";
+import Factorial from "./Forloop/Factorial";
+import Arraynumber from "./Forloop/Arraynumber";
+import ArrayNumberadd from "./Forloop/ArrayNumberadd";
+import Findbig from "./Forloop/Findbig";
+import Vowels from "./Forloop/Vowels";
+import Fibonacci from "./Forloop/Fibonacci";
+import Starprinting from "./Forloop/Starprinting";
+import Number from "./Forloop/numberPrint";
+import ArrayKeyandObject from "./Forloop/ArrayKeyandObject";
+import Printusername from "./Printusername";
+import Printtotalprice from "./Printtotalprice";
+import PrinthighProduct from "./PrinthighProduct";
+import Hobbies from "./Forloop/Hobbies";
+import Average from "./Forloop/Average";
+import PrintCities from "./Forloop/PrintCities";
+import Orders from "./Forloop/Orders";
+import CartAdding from "./Forloop/CartAdding";
+import Orders2 from "./Forloop/Orders2";
+import Twistedorder from "./Forloop/Twistedorder";
+import Orderstwisted from "./Forloop/Orderstwisted";
+import Demo from "./Forloop/Demo";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import OrderList from "./Orderlist";
+import { OrderProvider } from "./OrderContext";
+import Demo2 from "./Demo2";
+import Products from "./ProductswithUI/Products";
+import CartPage from "./ProductswithUI/Cart";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 // import Product2 from './ProductswithUI/Product2'
-import 'react-toastify/dist/ReactToastify.css';
-import Pract from './pract'
-import Sample from './Sample'
-
-
+import "react-toastify/dist/ReactToastify.css";
+import Pract from "./pract";
+import Sample from "./Sample";
+import CategoryPage from "./ProductswithUI/CategoryPage";
 
 const App = () => {
+  //  const [products, setProducts] = useState([]);
   return (
     <div>
-
       {/* <Task/>
       <OddorEven/>
       <Calculator/>
@@ -91,35 +90,34 @@ const App = () => {
       {/* <Orderstwisted/> */}
       {/* <Demo/> */}
       {/* <Demo2/> */}
-     
+
       {/* <Product/> */}
 
-        {/* <OrderProvider>
+      {/* <OrderProvider>
       <div>
         <h1>Order Management</h1>
         <OrderList/>
       </div>
     </OrderProvider> */}
-      
-       <Router>
-      <nav style={{ marginBottom: "20px" }}>
-        <Link to="/">Products</Link> | <Link to="/cart">Cart</Link>
-      </nav>
 
-      <Routes>
-        <Route path="/" element={<Products />} />
-        <Route path="/cart" element={<CartPage />} />
-      </Routes>
-    </Router>
+      <Router>
+        <nav style={{ marginBottom: "20px" }}>
+          <Link to="/">Products</Link> | <Link to="/cart">Cart</Link>
+        </nav>
 
-    {/* <Product2/> */}
+        <Routes>
+          <Route path="/" element={<Products />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/cate/:categoryName" element={<CategoryPage />} />
+        </Routes>
+      </Router>
 
-    {/* <Pract/> */}
-    {/* <Sample/> */}
-      
-      
+      {/* <Product2/> */}
+
+      {/* <Pract/> */}
+      {/* <Sample/> */}
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

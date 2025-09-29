@@ -1,59 +1,37 @@
-import React, { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import Products from "./Products";
+import { useParams } from "react-router-dom";
+import "./category.css";
+import { useState } from "react";
 
-const CartPage = () => {
-  const [cart, setCart] = useState([]);
+const CategoryPage = () => {
+  const [cartdata, setcartdata] = useState([]);
 
-  useEffect(() => {
-    const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    setCart(savedCart);
-  }, []);
+  const { categoryName } = useParams();
+  const products = JSON.parse(localStorage.getItem("products")) || [];
 
-  // checkout
-
-  const clearitem = () => {
-    let products = JSON.parse(localStorage.getItem("products")) || [];
-
-    cart.forEach((cartitem) => {
-      products = products.map((p) => ({
-        ...p,
-        variants: p.variants.map((v) =>
-          v.name === cartitem.name
-            ? { ...v, stock: Math.max(0, v.stock - cartitem.count) }
-            : v
-        ),
-      }));
-    });
-
-    localStorage.setItem("products", JSON.stringify(products));
-    localStorage.removeItem("cart");
-    setCart([]);
-  };
+  const categoryProducts = products.filter((p) => p.category === categoryName);
 
   const updateCart = (newCart) => {
     newCart = newCart.map((item) => {
-    
-     const base =
-        item.unit === "g"
-          ? ((item.baseQuantity * item.count) / 1000) * item.pricePerUnit
-          : item.baseQuantity * item.count * item.pricePerUnit;
+        const Pricewithtax = item.price * item.count;
 
-          const price = item.discount ? base - (base * item.discount) / 100 : base;
+        const finalprice = item.discount 
+        ?
+        Pricewithtax - (Pricewithtax * item.discount) / 100
+        : Pricewithtax;
 
-          return {
+        return {
             ...item,
-            price: price
-
-          };
+            Pricewithtax,
+            finalprice
+        };
     });
 
-    setCart(newCart);
+    setcartdata(newCart);
     localStorage.setItem("cart", JSON.stringify(newCart));
   };
 
   const increment = (idx) => {
-    const handle = [...cart];
+    const handle = [...cartdata];
     if (handle[idx].count < handle[idx].stock) {
       handle[idx].count += 1;
       updateCart(handle);
@@ -63,66 +41,47 @@ const CartPage = () => {
   };
 
   const decrement = (idx) => {
-    const handle = [...cart];
+    const handle = [...cartdata];
     handle[idx].count = Math.max(1, handle[idx].count - 1);
     updateCart(handle);
   };
 
-  const calculate = (item) => {
-     const base = item.unit === "g"
-      ? ((item.baseQuantity * item.count) / 1000) * item.pricePerUnit
-      : item.baseQuantity * item.count * item.pricePerUnit;
-
-      return item.discount
-      ? base - (base * item.discount) / 100 : base
-  };
-
-  const remove = (idx) => {
-    const rmv = [...cart];
-    rmv.splice(idx, 1);
-    updateCart(rmv);
-    localStorage.setItem("cart", JSON.stringify(rmv));
-  };
-
   return (
     <div>
-      <div className="cart_back">
-        {cart.length === 0 ? (
-          <p>No items in cart</p>
-        ) : (
-          <div>
-            {cart.map((item, i) => (
-              <div className="cart_design" key={i}>
-                <div className="flex_cart">
-                  <div className="cart_con">
-                    {item.name} <button onClick={() => increment(i)}>+</button>{" "}
-                    {item.count} <button onClick={() => decrement(i)}>-</button>{" "}
-                    | Price: {item.price.toFixed(2)}  {item.discount ?  `(Discount: ${item.discount}%)` : ""}
-                    <span style={{ color: "red" }}>
-                      Stock left: {item.stock}
-                    </span>
-                  </div>
-                  <div className="remove">
-                    <button className="cart_but" onClick={() => remove(i)}>
-                      x
-                    </button>
-                  </div>
-                </div>
+      {categoryProducts.map((product) => (
+        <div className="">
+          <h2>{product.category}</h2>
+          {product.variants.map((v, i) => (
+            <div className="Productlist" key={i}>
+              <img src={v.img} height={400} width={400} alt="" />
+              <div>
+                <h1>{product.category}</h1>
+                <p>{v.description}</p>
+                <h3>{v.name} </h3>
+                <h3> </h3>{" "}
+                {/* <div>Tax ({(v.taxRate * 100).toFixed(0)}%)</div> */}
+                <p>
+                  Select Quantity:
+                  <button onClick={() => increment(i)}>+</button> {v.count}{" "}
+                  <button onClick={() => decrement(i)}>-</button>
+                </p>
+                <h3 style={{ color: "green" }}>
+                  Price:{" "}
+                  {(v.unit === "g"
+                    ? ((v.baseQuantity * v.count) / 1000) * v.pricePerUnit
+                    : v.baseQuantity * v.count * v.pricePerUnit
+                  ).toFixed(2)}{" "}
+                  <span style={{ color: "red" }}>
+                    (diccount: {v.discount}%)
+                  </span>
+                </h3>
+                <h4>Select Variants</h4>
               </div>
-            ))}
-
-            <h3 style={{ marginLeft: "10px" }}>
-              {" "}
-              Total Price:{" "}
-              {cart.reduce((total, item) => total + calculate(item), 0)}
-            </h3>
-          </div>
-        )}
-        <button onClick={clearitem}>Checkout</button>
-      </div>
-      <ToastContainer />
+            </div>
+          ))}
+        </div>
+      ))}
     </div>
   );
 };
-
-export default CartPage;
+export default CategoryPage;

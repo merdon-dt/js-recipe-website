@@ -2,6 +2,8 @@ import React, { useEffect, useMemo, useState } from "react";
 import "./Product.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { IoClose } from "react-icons/io5";
+import { image } from "../assets/assests";
 
 const Products = () => {
   const [selectedItems, setSelectedItems] = useState([]);
@@ -20,7 +22,7 @@ const Products = () => {
     return [
       {
         category: "Apple",
-        selectionType: "checkbox", // can select multiple apples
+        selectionType: "checkbox",
         variants: [
           {
             name: "Red Apple",
@@ -31,7 +33,17 @@ const Products = () => {
             stock: 8,
             count: 1,
             isSingle: true,
-            discount: 10,
+            taxRate: 0.12,
+             discount: 10,
+            description:
+              "Sweet and juicy apples with a vibrant red hue, grown in the pristine valleys of Kashmir.",
+            nutrition: "Rich in fiber, Vitamin C, and antioxidants.",
+            bestUses: "Ideal for eating raw, making pies, or juicing.",
+            storageTip:
+              "Keep refrigerated to maintain crispness up to 2 weeks.",
+            packaging: "Packed in ventilated paper-based trays.",
+            harvestSeason: "October to December",
+            img: image.Apple
           },
           {
             name: "Green Apple",
@@ -42,7 +54,14 @@ const Products = () => {
             stock: 7,
             count: 1,
             isSingle: true,
-            discount: 20,
+            taxRate: 0.05,
+             discount: 40,
+            description: "Tangy, firm apples perfect for salads and snacking.",
+            nutrition: "Low in sugar and high in dietary fiber.",
+            bestUses: "Great for green salads, smoothies, and baking.",
+            storageTip: "Store in cool dry place or refrigerate for freshness.",
+            packaging: "Biodegradable bag with moisture control lining.",
+            harvestSeason: "August to October",
           },
           {
             name: "Golden Apple",
@@ -53,7 +72,15 @@ const Products = () => {
             stock: 8,
             count: 1,
             isSingle: true,
-            discount: 10,
+            taxRate: 0.12,
+             discount: 20,
+            description:
+              "Golden-skinned apples with a mellow sweetness, sourced from high-altitude orchards.",
+            nutrition: "Packed with potassium, vitamin K, and dietary fiber.",
+            bestUses: "Perfect for making applesauce, desserts, or eating raw.",
+            storageTip: "Keep in refrigerator crisper drawer.",
+            packaging: "Eco-friendly mesh bags.",
+            harvestSeason: "September to November",
           },
         ],
       },
@@ -71,6 +98,15 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 10,
+            taxRate: 0.12,
+            description:
+              "Large-sized bananas known for their creaminess and rich taste.",
+            nutrition: "High in potassium, magnesium, and vitamin B6.",
+            bestUses: "Perfect for shakes, baking, or direct consumption.",
+            storageTip:
+              "Keep at room temperature; avoid refrigeration before ripening.",
+            packaging: "Wrapped in banana leaf eco packs.",
+            harvestSeason: "Year-round",
           },
           {
             name: "Yelakki Banana",
@@ -82,12 +118,20 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 10,
+            taxRate: 0.12,
+            description:
+              "Small, sweet bananas with a distinct aroma and thin peel.",
+            nutrition: "Natural energy booster, high in fiber.",
+            bestUses: "Snack for kids, religious offerings, and desserts.",
+            storageTip: "Store in a cool dry place; do not refrigerate.",
+            packaging: "Natural jute wrap with cushioning.",
+            harvestSeason: "March to November",
           },
         ],
       },
       {
         category: "Milk",
-        selectionType: "radio", // pick one fat % type
+        selectionType: "radio",
         variants: [
           {
             name: "Cow Milk",
@@ -99,6 +143,13 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 10,
+            taxRate: 0.05,
+            description: "Freshly sourced cow milk with balanced fat content.",
+            nutrition: "Rich in calcium, protein, and B-vitamins.",
+            bestUses: "Drinking, tea/coffee, and cooking.",
+            storageTip: "Refrigerate below 4°C and consume within 3 days.",
+            packaging: "HDPE bottle, tamper-evident seal.",
+            processInfo: "Pasteurized and homogenized",
           },
           {
             name: "Buffalo Milk",
@@ -110,6 +161,13 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 10,
+            taxRate: 0.07,
+            description: "Creamier, high-fat buffalo milk for rich taste.",
+            nutrition: "Excellent source of calcium and protein.",
+            bestUses: "Ideal for making paneer, sweets, and curd.",
+            storageTip: "Consume within 2 days of opening.",
+            packaging: "2L pouch with thermal insulation.",
+            processInfo: "Double pasteurized",
           },
           {
             name: "Organic Cow Milk",
@@ -121,12 +179,19 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 30,
+            taxRate: 0.05,
+            description: "Milk from free-range cows fed on organic grass.",
+            nutrition: "High in Omega-3 fatty acids and antioxidants.",
+            bestUses: "Daily drinking, suitable for children.",
+            storageTip: "Keep refrigerated and shake before use.",
+            packaging: "Glass bottle, reusable.",
+            processInfo: "Unprocessed, A2 certified",
           },
         ],
       },
       {
         category: "Bread",
-        selectionType: "radio", // pick one bread type
+        selectionType: "radio",
         variants: [
           {
             name: "White Bread",
@@ -138,6 +203,13 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 10,
+            taxRate: 0.1,
+            description: "Soft, fluffy white bread baked fresh daily.",
+            nutrition: "Fortified with iron and folic acid.",
+            bestUses: "Ideal for sandwiches and toasts.",
+            storageTip: "Keep in airtight bag at room temperature.",
+            packaging: "Plastic wrap with easy-seal clip.",
+            ingredients: "Refined wheat flour, yeast, sugar, salt",
           },
           {
             name: "Brown Bread",
@@ -149,6 +221,14 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 20,
+            taxRate: 0.08,
+            description:
+              "Made with whole wheat flour and bran for added fiber.",
+            nutrition: "High in fiber, helps in digestion.",
+            bestUses: "Great for healthy sandwiches and breakfast.",
+            storageTip: "Keep in bread box or refrigerator.",
+            packaging: "Brown paper wrap with transparent window.",
+            ingredients: "Whole wheat flour, bran, vegetable oil",
           },
           {
             name: "Multigrain Bread",
@@ -160,12 +240,20 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 30,
+            taxRate: 0.05,
+            description:
+              "Enriched with 7 grains for added nutrition and taste.",
+            nutrition: "High in protein, omega-3, and complex carbs.",
+            bestUses: "Perfect with soups, dips, or toasted.",
+            storageTip: "Refrigerate after opening.",
+            packaging: "Zip-lock recyclable plastic wrap.",
+            ingredients: "Wheat, oats, barley, flaxseeds, millet",
           },
         ],
       },
       {
         category: "Butter",
-        selectionType: "radio", // salted/unsalted/herb → pick one
+        selectionType: "radio",
         variants: [
           {
             name: "Salted Butter",
@@ -177,6 +265,13 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 20,
+            taxRate: 0.12,
+            description: "Classic salted butter made from pure cow’s milk.",
+            nutrition: "Contains saturated fats, vitamin A, and calcium.",
+            bestUses: "Perfect for spreading, baking, and sautéing.",
+            storageTip: "Keep refrigerated and consume within 15 days.",
+            packaging: "Foil-wrapped brick in paper box.",
+            ingredients: "Pasteurized cream, salt",
           },
           {
             name: "Unsalted Butter",
@@ -188,6 +283,13 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 10,
+            taxRate: 0.15,
+            description: "Pure, creamy butter with no added salt.",
+            nutrition: "Ideal for controlled sodium intake.",
+            bestUses: "Best for baking and making sauces.",
+            storageTip: "Refrigerate and keep sealed after use.",
+            packaging: "Butter paper and cardboard sleeve.",
+            ingredients: "Pasteurized cream",
           },
           {
             name: "Herb Butter",
@@ -199,12 +301,21 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 20,
+            taxRate: 0.08,
+            description:
+              "Flavored with fresh herbs like parsley, oregano, and thyme.",
+            nutrition: "Adds flavor and aroma with minimal carbs.",
+            bestUses: "Topping on breads, steaks, and vegetables.",
+            storageTip: "Keep refrigerated; use within 7 days of opening.",
+            packaging: "Glass jar with resealable lid.",
+            ingredients: "Butter, mixed herbs, garlic",
           },
         ],
       },
+
       {
         category: "Cheese",
-        selectionType: "checkbox", // people might buy multiple cheese types
+        selectionType: "checkbox",
         variants: [
           {
             name: "Cheddar Cheese",
@@ -216,6 +327,13 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 10,
+            taxRate: 0.15,
+            description: "Firm textured, matured cheese with sharp taste.",
+            nutrition: "High in calcium, protein, and vitamin D.",
+            bestUses: "Ideal for sandwiches, grilled cheese, and burgers.",
+            storageTip: "Wrap tightly and refrigerate.",
+            packaging: "Vacuum-sealed block.",
+            origin: "India",
           },
           {
             name: "Mozzarella Cheese",
@@ -227,6 +345,13 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 40,
+            taxRate: 0.05,
+            description: "Soft and stretchy cheese perfect for pizzas.",
+            nutrition: "Rich in protein and calcium, moderate fat content.",
+            bestUses: "Pizza, lasagna, baked pasta.",
+            storageTip: "Store in chiller tray, use within 3 days of opening.",
+            packaging: "Resealable zip pouch.",
+            origin: "India",
           },
           {
             name: "Parmesan Cheese",
@@ -238,12 +363,19 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 30,
+            taxRate: 0.0,
+            description: "Hard, aged cheese with a nutty, salty flavor.",
+            nutrition: "High in protein and calcium, low moisture content.",
+            bestUses: "Grated over pasta, risotto, or salads.",
+            storageTip: "Wrap in wax paper, then foil and refrigerate.",
+            packaging: "Wax paper in vacuum pack.",
+            origin: "Italy",
           },
         ],
       },
       {
         category: "Orange",
-        selectionType: "radio", // usually one orange type
+        selectionType: "radio",
         variants: [
           {
             name: "Nagpur Orange",
@@ -255,6 +387,14 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 20,
+            taxRate: 0.0,
+            description:
+              "Juicy oranges with sweet-sour balance, native to Nagpur.",
+            nutrition: "Excellent source of Vitamin C and antioxidants.",
+            bestUses: "Juicing, salads, or eating fresh.",
+            storageTip: "Store in a cool, dry place or refrigerate.",
+            packaging: "Paper carton with mesh ventilation.",
+            harvestSeason: "December to February",
           },
           {
             name: "Kinnow Orange",
@@ -266,12 +406,20 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 50,
+            taxRate: 0.12,
+            description:
+              "Hybrid mandarin with a bright orange peel and rich pulp.",
+            nutrition: "Rich in Vitamin A, B6, and C.",
+            bestUses: "Juice extraction, fruit bowls, desserts.",
+            storageTip: "Refrigerate for prolonged shelf life.",
+            packaging: "Recyclable net bag.",
+            harvestSeason: "March to April",
           },
         ],
       },
       {
         category: "Juice",
-        selectionType: "radio", // pick one flavor
+        selectionType: "radio",
         variants: [
           {
             name: "Mango Juice",
@@ -283,6 +431,13 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 30,
+            taxRate: 0.12,
+            description: "Tropical mango juice with no added preservatives.",
+            nutrition: "High in natural sugars and Vitamin A.",
+            bestUses: "Chilled summer beverage or smoothie base.",
+            storageTip: "Refrigerate after opening; consume within 3 days.",
+            packaging: "Tetra Pak with cap.",
+            ingredients: "Mango pulp, water, sugar",
           },
           {
             name: "Orange Juice",
@@ -294,6 +449,13 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 30,
+            taxRate: 0.07,
+            description: "Pulpy orange juice with tangy sweetness.",
+            nutrition: "Loaded with Vitamin C, folate, and potassium.",
+            bestUses: "Great for breakfast or immunity boost.",
+            storageTip: "Keep chilled and shake before use.",
+            packaging: "PET bottle with tamper-proof seal.",
+            ingredients: "Orange juice concentrate, water",
           },
           {
             name: "Apple Juice",
@@ -305,12 +467,20 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 40,
+            taxRate: 0.07,
+            description:
+              "Sweet and smooth apple juice made from Himachal apples.",
+            nutrition: "Natural sugars, vitamin C, polyphenols.",
+            bestUses: "Cold drink, detox blends, lunch packs.",
+            storageTip: "Once opened, refrigerate and use in 48 hours.",
+            packaging: "Tetra Pak with screw cap.",
+            ingredients: "Apple juice concentrate, water, citric acid",
           },
         ],
       },
       {
         category: "Snacks",
-        selectionType: "checkbox", // can select multiple snacks
+        selectionType: "checkbox",
         variants: [
           {
             name: "Potato Chips",
@@ -322,6 +492,14 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 20,
+            taxRate: 0.1,
+            description:
+              "Crispy, salted potato chips made from premium potatoes.",
+            nutrition: "High in carbs, moderate fat, low protein.",
+            bestUses: "Snack-time, parties, with dips.",
+            storageTip: "Store in a cool place; keep sealed.",
+            packaging: "Nitrogen-sealed foil pouch.",
+            flavor: "Classic salted",
           },
           {
             name: "Nachos",
@@ -333,6 +511,14 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 40,
+            taxRate: 0,
+            description:
+              "Crunchy corn tortilla chips with a bold cheesy flavor.",
+            nutrition: "Source of carbs and sodium; low protein.",
+            bestUses: "Movie nights, with salsa or cheese dip.",
+            storageTip: "Seal tightly after opening.",
+            packaging: "Resealable pack.",
+            flavor: "Cheese",
           },
           {
             name: "Masala Peanuts",
@@ -344,12 +530,19 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 20,
+            taxRate: 0.12,
+            description: "Spicy, crunchy peanuts coated with tangy masala.",
+            nutrition: "High protein, high fat, spicy flavor.",
+            bestUses: "Tea-time snack, party munchie.",
+            storageTip: "Store in airtight container.",
+            packaging: "Foil pouch with zip-lock.",
+            flavor: "Spicy Masala",
           },
         ],
       },
       {
         category: "Tomato",
-        selectionType: "radio", // hybrid OR cherry
+        selectionType: "radio",
         variants: [
           {
             name: "Hybrid Tomato",
@@ -361,6 +554,14 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 40,
+            taxRate: 0.05,
+            description:
+              "Plump, juicy tomatoes with consistent size and deep red color.",
+            nutrition: "Rich in lycopene, vitamin A, and C.",
+            bestUses: "Cooking, gravies, ketchup making.",
+            storageTip: "Store at room temp; avoid fridge unless overripe.",
+            packaging: "Paper tray with netting.",
+            harvestSeason: "Year-round",
           },
           {
             name: "Cherry Tomato",
@@ -372,12 +573,20 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 10,
+            taxRate: 0.12,
+            description:
+              "Sweet, bite-sized tomatoes grown using hydroponic methods.",
+            nutrition: "Low in calories, rich in antioxidants.",
+            bestUses: "Salads, garnishes, skewers.",
+            storageTip: "Keep refrigerated in original pack.",
+            packaging: "Plastic punnet box.",
+            harvestSeason: "All seasons",
           },
         ],
       },
       {
         category: "Cucumber",
-        selectionType: "radio", // english or desi
+        selectionType: "radio",
         variants: [
           {
             name: "English Cucumber",
@@ -389,6 +598,13 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 20,
+            taxRate: 0.12,
+            description: "Long, seedless cucumbers with smooth skin.",
+            nutrition: "Hydrating, low-calorie, rich in silica.",
+            bestUses: "Salads, sandwiches, detox water.",
+            storageTip: "Wrap in paper towel and refrigerate.",
+            packaging: "Plastic sleeve wrap.",
+            harvestSeason: "Year-round (greenhouse)",
           },
           {
             name: "Desi Cucumber",
@@ -400,6 +616,14 @@ const Products = () => {
             count: 1,
             isSingle: true,
             discount: 10,
+            taxRate: 0.12,
+            description:
+              "Traditional variety with crunchy texture and mild flavor.",
+            nutrition: "Excellent for hydration, good fiber source.",
+            bestUses: "Salads, raita, traditional dishes.",
+            storageTip: "Keep in fridge crisper tray.",
+            packaging: "Net bag with paper lining.",
+            harvestSeason: "Summer to early monsoon",
           },
         ],
       },
@@ -464,6 +688,7 @@ const Products = () => {
 
   //Add cart
 
+  // Add cart
   function addToCart(variants) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -474,23 +699,25 @@ const Products = () => {
       let quantity, price;
 
       if (realVariant.unit === "g") {
-        if (realVariant.isSingle && realVariant.count === 1) {
-          quantity = realVariant.baseQuantity;
-          price = (realVariant.pricePerUnit / 1000) * realVariant.baseQuantity;
-        } else {
-          quantity = realVariant.baseQuantity * realVariant.count;
-          price = (realVariant.pricePerUnit / 1000) * quantity;
-        }
+        quantity = realVariant.baseQuantity * realVariant.count;
+        price = (realVariant.pricePerUnit / 1000) * quantity;
       } else {
         quantity = realVariant.baseQuantity * realVariant.count;
         price = quantity * realVariant.pricePerUnit;
       }
 
+      const taxRate = realVariant.taxRate || 0;
+      const tax = price * taxRate;
+      const finalPrice = price + tax;
+
       return {
         ...realVariant,
         category: product.category,
         quantity,
-        price,
+        basePrice: price,
+        taxRate,
+        tax,
+        price: finalPrice,
       };
     });
 
@@ -500,13 +727,15 @@ const Products = () => {
       if (existing) {
         existing.quantity = variant.quantity;
         existing.price = variant.price;
+        existing.tax = variant.tax;
       } else {
         cart.push({ ...variant });
       }
     });
 
     localStorage.setItem("cart", JSON.stringify(cart));
-    toast.success("Items Added");
+    toast.success("Items Added ");
+
     setTimeout(() => {
       navigate("/cart");
     }, 1000);
@@ -521,6 +750,8 @@ const Products = () => {
           .find((p) => p.category === product.category)
           .variants.find((v) => v.name === variant.name),
         category: product.category,
+        count: 1,
+        isSingle: true,
       };
 
       if (product.selectionType === "radio") {
@@ -535,55 +766,84 @@ const Products = () => {
         }
       }
     });
+    if (isChecked) {
+      setProducts((p) =>
+        p.map((prod) =>
+          prod.category === product.category
+            ? {
+                ...prod,
+                variants: prod.variants.map((v) =>
+                  v.name === variant.name
+                    ? { ...v, count: 1, isSingle: true }
+                    : v
+                ),
+              }
+            : prod
+        )
+      );
+    }
   }
+
+  //    function handleSelect(product, variant, isChecked) {
+  //   setSelectedItems((prev) => {
+  //     const updatedVariant = {
+  //       ...products
+  //         .find((p) => p.category === product.category)
+  //         .variants.find((v) => v.name === variant.name),
+  //       category: product.category,
+
+  //     };
+
+  //     if (product.selectionType === "radio") {
+  //       return prev
+  //         .filter((item) => item.category !== product.category)
+  //         .concat(updatedVariant);
+  //     } else {
+  //       if (isChecked) {
+  //         return [...prev, updatedVariant];
+  //       } else {
+  //         return prev.filter((item) => item.name !== variant.name);
+  //       }
+  //     }
+  //   });
+
+  // }
 
   // price
 
-  function calculate(variant) {
-    let price = 0;
+  // const calculate = (type) => {
+  //   const base =
+  //     type.unit === "g"
+  //       ? (type.baseQuantity * type.count) / 1000 * type.pricePerUnit
+  //       : type.baseQuantity * type.count * type.pricePerUnit;
 
-    if (variant.unit === "g" && !variant.isSingle) {
-      if (variant.count === 1) {
-        price = (variant.pricePerUnit / 1000) * variant.baseQuantity;
-      } else {
-        const perGramPrice = variant.pricePerUnit / 1000;
-        const totalGrams = variant.baseQuantity * variant.count;
-        price = perGramPrice * totalGrams;
-      }
-    } else {
-      price = variant.pricePerUnit * variant.count;
-    }
+  //   const tax = type.taxRate ? base * type.taxRate : 0;
 
-    if (variant.discount) {
-      price = price - (price * variant.discount) / 100;
-    }
+  //   return base + tax;
+  // };
 
-    return price;
-  }
-
-  //sort and filter
-
-  // NEW: compute sortedProducts
   const sortedProducts = useMemo(() => {
-    if (!search) return products;
+    const sortVariants = (variants) =>
+      [...variants].sort((a, b) => a.pricePerUnit - b.pricePerUnit);
 
-    // Put categories with matching variants first
-    const match = [];
-    const rest = [];
+    if (!search) {
+      return products;
+    }
 
-    products.forEach((product) => {
-      const hasMatch = product.variants.some((v) =>
-        v.name.toLowerCase().includes(search.toLowerCase())
-      );
-      if (hasMatch) {
-        match.push(product);
-      } else {
-        rest.push(product);
-      }
-    });
-
-    return [...match, ...rest];
+    return products
+      .filter((product) =>
+        product.category.toLowerCase().includes(search.toLowerCase())
+      )
+      .map((p) => ({
+        ...p,
+        variants: sortVariants(p.variants),
+      }));
   }, [products, search]);
+
+  const clear = () => {
+    setsearch("");
+    
+  };
 
   return (
     <div>
@@ -595,92 +855,96 @@ const Products = () => {
                 type="text"
                 value={search}
                 onChange={(e) => setsearch(e.target.value)}
-                placeholder=" search here..."
               />
+              <div className="clear" onClick={clear}>
+                <IoClose />
+              </div>
             </div>
-            {products.map((product, productIndex) => (
-              <div className="main_content" key={productIndex}>
-                {sortedProducts.map((product, productIndex) => (
-                  <div className="main_content" key={productIndex}>
-                    <div className="heading">
-                      <h3 className="head_product">{product.category}</h3>
-                    </div>
-                    <ul className="list">
-                      {product.variants.map((type, variantIndex) => (
-                        <div key={variantIndex}>
-                          <li>
-                            <label>
-                              <input
-                                className="input"
-                                type={product.selectionType}
-                                name={product.category}
-                                checked={selectedItems.some(
-                                  (item) => item.name === type.name
-                                )}
-                                onChange={(e) =>
-                                  handleSelect(product, type, e.target.checked)
-                                }
-                                style={{ accentColor: "black" }}
-                              />{" "}
-                              {type.name} {type.baseQuantity} {type.unit}{" "}
-                              <span className="pro_price">
-                                Price: ₹{calculate(type).toFixed(2)}{" "}
-                                {type.discount > 0 && (
-                                  <span
-                                    style={{
-                                      color: "green",
-                                      marginLeft: "10px",
-                                    }}
-                                  >
-                                    ({type.discount}% OFF)
-                                  </span>
-                                )}
-                              </span>
-                            </label>
 
-                            {selectedItems.some(
+            {sortedProducts.map((product, productIndex) => (
+              <div className="main_content" key={productIndex}>
+                <div className="heading">
+                  <h2
+                    onClick={() => navigate(`/cate/${product.category}`)}
+                    style={{
+                      cursor: "pointer",
+                      color: "white",
+                      marginLeft: "20px",
+                    }}
+                  >
+                    {product.category}
+                  </h2>
+                </div>
+                <ul className="list">
+                  {product.variants.map((type, variantIndex) => (
+                    <div key={variantIndex}>
+                      <li>
+                        <label>
+                          <input
+                            className="input"
+                            type={product.selectionType}
+                            name={product.category}
+                            checked={selectedItems.some(
                               (item) => item.name === type.name
-                            ) && (
-                              <div className="sec_half">
-                                <button
-                                  onClick={() =>
-                                    increment(productIndex, variantIndex)
-                                  }
-                                >
-                                  +
-                                </button>{" "}
-                                {type.count}{" "}
-                                <button
-                                  onClick={() =>
-                                    decrement(productIndex, variantIndex)
-                                  }
-                                >
-                                  -
-                                </button>{" "}
-                              </div>
                             )}
+                            onChange={(e) =>
+                              handleSelect(product, type, e.target.checked)
+                            }
+                            style={{ accentColor: "black" }}
+                          />{" "}
+                          {type.name} {type.baseQuantity} {type.unit}{" "}
+                          <span className="pro_price">
+                            Base:{" "}
+                            {(type.unit === "g"
+                              ? ((type.baseQuantity * type.count) / 1000) *
+                                type.pricePerUnit
+                              : type.baseQuantity *
+                                type.count *
+                                type.pricePerUnit
+                            ).toFixed(2)}{" "}
+                            + Tax ({(type.taxRate * 100).toFixed(0)}%){" "}
+                          </span>
+                        </label>
+
+                        {selectedItems.some(
+                          (item) => item.name === type.name
+                        ) && (
+                          <div className="sec_half">
+                            <button
+                              onClick={() =>
+                                increment(productIndex, variantIndex)
+                              }
+                            >
+                              +
+                            </button>{" "}
+                            {type.count}{" "}
+                            <button
+                              onClick={() =>
+                                decrement(productIndex, variantIndex)
+                              }
+                            >
+                              -
+                            </button>{" "}
+                          </div>
+                        )}
+                        <span style={{ color: "red", marginLeft: "20px" }}>
+                          {type.stock < 3 && (
                             <span style={{ color: "red", marginLeft: "20px" }}>
-                              {" "}
-                              {type.count > 5 ? (
-                                <span style={{ color: "red" }}>
-                                  {" "}
-                                  Stock Left:{type.stock - type.count}
-                                </span>
-                              ) : null}
+                              Stock limit: {type.stock}
                             </span>
-                          </li>
-                        </div>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+                          )}
+                        </span>
+                      </li>
+                    </div>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
         </div>
         {/* <div className="cart_foot">
           {products.map((product) => (
-           
+
           ))}
         </div> */}
       </div>
