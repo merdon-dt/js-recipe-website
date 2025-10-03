@@ -23,6 +23,7 @@ const Products = () => {
       {
         category: "Apple",
         selectionType: "checkbox",
+        isInCart: false,
         variants: [
           {
             name: "Red Apple",
@@ -34,7 +35,7 @@ const Products = () => {
             count: 1,
             isSingle: true,
             taxRate: 0.12,
-             discount: 10,
+            discount: 10,
             description:
               "Sweet and juicy apples with a vibrant red hue, grown in the pristine valleys of Kashmir.",
             nutrition: "Rich in fiber, Vitamin C, and antioxidants.",
@@ -43,7 +44,7 @@ const Products = () => {
               "Keep refrigerated to maintain crispness up to 2 weeks.",
             packaging: "Packed in ventilated paper-based trays.",
             harvestSeason: "October to December",
-            img: image.Apple
+            img: image.Apple,
           },
           {
             name: "Green Apple",
@@ -55,14 +56,14 @@ const Products = () => {
             count: 1,
             isSingle: true,
             taxRate: 0.05,
-             discount: 40,
+            discount: 40,
             description: "Tangy, firm apples perfect for salads and snacking.",
             nutrition: "Low in sugar and high in dietary fiber.",
             bestUses: "Great for green salads, smoothies, and baking.",
             storageTip: "Store in cool dry place or refrigerate for freshness.",
             packaging: "Biodegradable bag with moisture control lining.",
             harvestSeason: "August to October",
-             img: image.Apple
+            img: image.Apple,
           },
           {
             name: "Golden Apple",
@@ -74,7 +75,7 @@ const Products = () => {
             count: 1,
             isSingle: true,
             taxRate: 0.12,
-             discount: 20,
+            discount: 20,
             description:
               "Golden-skinned apples with a mellow sweetness, sourced from high-altitude orchards.",
             nutrition: "Packed with potassium, vitamin K, and dietary fiber.",
@@ -82,13 +83,14 @@ const Products = () => {
             storageTip: "Keep in refrigerator crisper drawer.",
             packaging: "Eco-friendly mesh bags.",
             harvestSeason: "September to November",
-             img: image.Apple
+            img: image.Apple,
           },
         ],
       },
       {
         category: "Banana",
         selectionType: "checkbox",
+        isInCart: true,
         variants: [
           {
             name: "Robusta Banana",
@@ -109,7 +111,7 @@ const Products = () => {
               "Keep at room temperature; avoid refrigeration before ripening.",
             packaging: "Wrapped in banana leaf eco packs.",
             harvestSeason: "Year-round",
-            img: image.Banana
+            img: image.Banana,
           },
           {
             name: "Yelakki Banana",
@@ -129,13 +131,14 @@ const Products = () => {
             storageTip: "Store in a cool dry place; do not refrigerate.",
             packaging: "Natural jute wrap with cushioning.",
             harvestSeason: "March to November",
-            img: image.Banana
+            img: image.Banana,
           },
         ],
       },
       {
         category: "Milk",
         selectionType: "radio",
+        isInCart: false,
         variants: [
           {
             name: "Cow Milk",
@@ -154,7 +157,7 @@ const Products = () => {
             storageTip: "Refrigerate below 4°C and consume within 3 days.",
             packaging: "HDPE bottle, tamper-evident seal.",
             processInfo: "Pasteurized and homogenized",
-            img: image.Milk
+            img: image.Milk,
           },
           {
             name: "Buffalo Milk",
@@ -173,7 +176,7 @@ const Products = () => {
             storageTip: "Consume within 2 days of opening.",
             packaging: "2L pouch with thermal insulation.",
             processInfo: "Double pasteurized",
-             img: image.Milk
+            img: image.Milk,
           },
           {
             name: "Organic Cow Milk",
@@ -192,13 +195,14 @@ const Products = () => {
             storageTip: "Keep refrigerated and shake before use.",
             packaging: "Glass bottle, reusable.",
             processInfo: "Unprocessed, A2 certified",
-             img: image.Milk
+            img: image.Milk,
           },
         ],
       },
       {
         category: "Bread",
         selectionType: "radio",
+        isInCart: true,
         variants: [
           {
             name: "White Bread",
@@ -217,7 +221,7 @@ const Products = () => {
             storageTip: "Keep in airtight bag at room temperature.",
             packaging: "Plastic wrap with easy-seal clip.",
             ingredients: "Refined wheat flour, yeast, sugar, salt",
-            img: image.Bread
+            img: image.Bread,
           },
           {
             name: "Brown Bread",
@@ -237,7 +241,7 @@ const Products = () => {
             storageTip: "Keep in bread box or refrigerator.",
             packaging: "Brown paper wrap with transparent window.",
             ingredients: "Whole wheat flour, bran, vegetable oil",
-            img: image.Bread
+            img: image.Bread,
           },
           {
             name: "Multigrain Bread",
@@ -257,13 +261,14 @@ const Products = () => {
             storageTip: "Refrigerate after opening.",
             packaging: "Zip-lock recyclable plastic wrap.",
             ingredients: "Wheat, oats, barley, flaxseeds, millet",
-            img: image.Bread
+            img: image.Bread,
           },
         ],
       },
       {
         category: "Butter",
         selectionType: "radio",
+        isInCart: false,
         variants: [
           {
             name: "Salted Butter",
@@ -326,6 +331,7 @@ const Products = () => {
       {
         category: "Cheese",
         selectionType: "checkbox",
+        isInCart: false,
         variants: [
           {
             name: "Cheddar Cheese",
@@ -386,6 +392,7 @@ const Products = () => {
       {
         category: "Orange",
         selectionType: "radio",
+        isInCart: false,
         variants: [
           {
             name: "Nagpur Orange",
@@ -430,6 +437,7 @@ const Products = () => {
       {
         category: "Juice",
         selectionType: "radio",
+        isInCart: false,
         variants: [
           {
             name: "Mango Juice",
@@ -491,6 +499,7 @@ const Products = () => {
       {
         category: "Snacks",
         selectionType: "checkbox",
+        isInCart: true,
         variants: [
           {
             name: "Potato Chips",
@@ -553,6 +562,7 @@ const Products = () => {
       {
         category: "Tomato",
         selectionType: "radio",
+        isInCart: false,
         variants: [
           {
             name: "Hybrid Tomato",
@@ -597,6 +607,7 @@ const Products = () => {
       {
         category: "Cucumber",
         selectionType: "radio",
+        isInCart: true,
         variants: [
           {
             name: "English Cucumber",
@@ -645,8 +656,6 @@ const Products = () => {
   }, [products]);
 
   const [search, setsearch] = useState("");
-
- 
 
   //count increment
 
@@ -698,64 +707,53 @@ const Products = () => {
     );
   }
 
-
-  // Add cart
   function addToCart(variants) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  variants.forEach((variant) => {
+    const product = products.find((p) => p.category === variant.category);
+    if (!product) return;
+
+    const realVariant = product.variants.find((v) => v.name === variant.name);
+    if (!realVariant) return;
+
     
 
-    const latest = variants.map((variant) => {
-      const product = products.find((p) => p.category === variant.category);
-      const realVariant = product.variants.find((v) => v.name === variant.name);
-      
+    const newItem = {
+      ...realVariant,
+      category: product.category,
+    };
 
-      let quantity, price;
-
-      if (realVariant.unit === "g") {
-        quantity = realVariant.baseQuantity * realVariant.count;
-        price = (realVariant.pricePerUnit / 1000) * quantity;
+    if (product.isInCart === false) {
+      const existingIndex = cart.findIndex(
+        (item) =>
+          item.name === newItem.name && item.category === newItem.category
+      );
+     
+      if (existingIndex !== -1) {
+        const existingItem = cart[existingIndex];
+        cart[existingIndex] = {
+          ...existingItem,
+          count: existingItem.count + newItem.count,
+          quantity: existingItem.quantity + newItem.quantity,
+          basePrice: existingItem.basePrice + newItem.basePrice,
+          discountAmt: existingItem.discountAmt + newItem.discountAmt,
+          tax: existingItem.tax + newItem.tax,
+          price: existingItem.price + newItem.price,
+        };
       } else {
-        quantity = realVariant.baseQuantity * realVariant.count;
-        price = quantity * realVariant.pricePerUnit;
+        cart.push(newItem);
       }
+    } else {
+      cart.push(newItem);
+    }
+  });
 
-      const taxRate = realVariant.taxRate || 0;
-      const tax = price * taxRate;
-      const finalPrice = price + tax;
-
-      return {
-        ...realVariant,
-        category: product.category,
-        quantity,
-        basePrice: price,
-        taxRate,
-        tax,
-        price: finalPrice,
-      };
-      
-    });
-
-    latest.forEach((variant) => {
-      const existing = cart.find((item) => item.name === variant.name);
-
-      if (existing) {
-        existing.quantity = variant.quantity;
-        existing.price = variant.price;
-        existing.tax = variant.tax;
-      } else {
-        cart.push({ ...variant });
-      }
-    });
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-    toast.success("Items Added ");
-
-    setTimeout(() => {
-      navigate("/cart");
-    }, 1000);
-  }
-
-  // for check and radio select
+  localStorage.setItem("cart", JSON.stringify(cart));
+  toast.success("Items Added");
+  setTimeout(() => navigate("/cart"), 1000);
+}
+  
 
   function handleSelect(product, variant, isChecked) {
     setSelectedItems((prev) => {
@@ -818,7 +816,6 @@ const Products = () => {
 
   const clear = () => {
     setsearch("");
-
   };
 
   return (
@@ -910,7 +907,6 @@ const Products = () => {
                             </span>
                           )}
                         </span>
-                        
                       </li>
                     </div>
                   ))}
