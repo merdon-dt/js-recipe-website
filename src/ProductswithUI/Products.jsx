@@ -23,7 +23,7 @@ const Products = () => {
       {
         category: "Apple",
         selectionType: "checkbox",
-        isInCart: false,
+       
         variants: [
           {
             name: "Red Apple",
@@ -45,6 +45,7 @@ const Products = () => {
             packaging: "Packed in ventilated paper-based trays.",
             harvestSeason: "October to December",
             img: image.Apple,
+             isInCart: false,
           },
           {
             name: "Green Apple",
@@ -64,6 +65,7 @@ const Products = () => {
             packaging: "Biodegradable bag with moisture control lining.",
             harvestSeason: "August to October",
             img: image.Apple,
+             isInCart: false,
           },
           {
             name: "Golden Apple",
@@ -84,13 +86,13 @@ const Products = () => {
             packaging: "Eco-friendly mesh bags.",
             harvestSeason: "September to November",
             img: image.Apple,
+             isInCart: true,
           },
         ],
       },
       {
         category: "Banana",
         selectionType: "checkbox",
-        isInCart: true,
         variants: [
           {
             name: "Robusta Banana",
@@ -112,6 +114,8 @@ const Products = () => {
             packaging: "Wrapped in banana leaf eco packs.",
             harvestSeason: "Year-round",
             img: image.Banana,
+            isInCart: true,
+
           },
           {
             name: "Yelakki Banana",
@@ -132,13 +136,14 @@ const Products = () => {
             packaging: "Natural jute wrap with cushioning.",
             harvestSeason: "March to November",
             img: image.Banana,
+            isInCart: false,
+ 
           },
         ],
       },
       {
         category: "Milk",
         selectionType: "radio",
-        isInCart: false,
         variants: [
           {
             name: "Cow Milk",
@@ -158,6 +163,8 @@ const Products = () => {
             packaging: "HDPE bottle, tamper-evident seal.",
             processInfo: "Pasteurized and homogenized",
             img: image.Milk,
+            isInCart: false,
+
           },
           {
             name: "Buffalo Milk",
@@ -196,13 +203,14 @@ const Products = () => {
             packaging: "Glass bottle, reusable.",
             processInfo: "Unprocessed, A2 certified",
             img: image.Milk,
+            isInCart: false,
+
           },
         ],
       },
       {
         category: "Bread",
         selectionType: "radio",
-        isInCart: true,
         variants: [
           {
             name: "White Bread",
@@ -222,6 +230,8 @@ const Products = () => {
             packaging: "Plastic wrap with easy-seal clip.",
             ingredients: "Refined wheat flour, yeast, sugar, salt",
             img: image.Bread,
+            isInCart: true,
+
           },
           {
             name: "Brown Bread",
@@ -242,6 +252,8 @@ const Products = () => {
             packaging: "Brown paper wrap with transparent window.",
             ingredients: "Whole wheat flour, bran, vegetable oil",
             img: image.Bread,
+            isInCart: true,
+
           },
           {
             name: "Multigrain Bread",
@@ -262,13 +274,14 @@ const Products = () => {
             packaging: "Zip-lock recyclable plastic wrap.",
             ingredients: "Wheat, oats, barley, flaxseeds, millet",
             img: image.Bread,
+            isInCart: true,
+
           },
         ],
       },
       {
         category: "Butter",
         selectionType: "radio",
-        isInCart: false,
         variants: [
           {
             name: "Salted Butter",
@@ -287,6 +300,8 @@ const Products = () => {
             storageTip: "Keep refrigerated and consume within 15 days.",
             packaging: "Foil-wrapped brick in paper box.",
             ingredients: "Pasteurized cream, salt",
+            isInCart: false,
+
           },
           {
             name: "Unsalted Butter",
@@ -305,6 +320,8 @@ const Products = () => {
             storageTip: "Refrigerate and keep sealed after use.",
             packaging: "Butter paper and cardboard sleeve.",
             ingredients: "Pasteurized cream",
+            isInCart: false,
+
           },
           {
             name: "Herb Butter",
@@ -324,6 +341,8 @@ const Products = () => {
             storageTip: "Keep refrigerated; use within 7 days of opening.",
             packaging: "Glass jar with resealable lid.",
             ingredients: "Butter, mixed herbs, garlic",
+           isInCart: false,
+ 
           },
         ],
       },
@@ -331,7 +350,6 @@ const Products = () => {
       {
         category: "Cheese",
         selectionType: "checkbox",
-        isInCart: false,
         variants: [
           {
             name: "Cheddar Cheese",
@@ -350,6 +368,8 @@ const Products = () => {
             storageTip: "Wrap tightly and refrigerate.",
             packaging: "Vacuum-sealed block.",
             origin: "India",
+            isInCart: false,
+
           },
           {
             name: "Mozzarella Cheese",
@@ -368,6 +388,8 @@ const Products = () => {
             storageTip: "Store in chiller tray, use within 3 days of opening.",
             packaging: "Resealable zip pouch.",
             origin: "India",
+            isInCart: false,
+
           },
           {
             name: "Parmesan Cheese",
@@ -386,6 +408,8 @@ const Products = () => {
             storageTip: "Wrap in wax paper, then foil and refrigerate.",
             packaging: "Wax paper in vacuum pack.",
             origin: "Italy",
+            isInCart: false,
+
           },
         ],
       },
@@ -412,6 +436,8 @@ const Products = () => {
             storageTip: "Store in a cool, dry place or refrigerate.",
             packaging: "Paper carton with mesh ventilation.",
             harvestSeason: "December to February",
+            isInCart: false,
+
           },
           {
             name: "Kinnow Orange",
@@ -431,13 +457,14 @@ const Products = () => {
             storageTip: "Refrigerate for prolonged shelf life.",
             packaging: "Recyclable net bag.",
             harvestSeason: "March to April",
+           isInCart: false,
+
           },
         ],
       },
       {
         category: "Juice",
         selectionType: "radio",
-        isInCart: false,
         variants: [
           {
             name: "Mango Juice",
@@ -456,6 +483,8 @@ const Products = () => {
             storageTip: "Refrigerate after opening; consume within 3 days.",
             packaging: "Tetra Pak with cap.",
             ingredients: "Mango pulp, water, sugar",
+        isInCart: false,
+
           },
           {
             name: "Orange Juice",
@@ -474,6 +503,8 @@ const Products = () => {
             storageTip: "Keep chilled and shake before use.",
             packaging: "PET bottle with tamper-proof seal.",
             ingredients: "Orange juice concentrate, water",
+            isInCart: false,
+
           },
           {
             name: "Apple Juice",
@@ -493,13 +524,14 @@ const Products = () => {
             storageTip: "Once opened, refrigerate and use in 48 hours.",
             packaging: "Tetra Pak with screw cap.",
             ingredients: "Apple juice concentrate, water, citric acid",
+            isInCart: false,
+
           },
         ],
       },
       {
         category: "Snacks",
         selectionType: "checkbox",
-        isInCart: true,
         variants: [
           {
             name: "Potato Chips",
@@ -519,6 +551,8 @@ const Products = () => {
             storageTip: "Store in a cool place; keep sealed.",
             packaging: "Nitrogen-sealed foil pouch.",
             flavor: "Classic salted",
+            isInCart: true,
+
           },
           {
             name: "Nachos",
@@ -538,6 +572,8 @@ const Products = () => {
             storageTip: "Seal tightly after opening.",
             packaging: "Resealable pack.",
             flavor: "Cheese",
+            isInCart: true,
+
           },
           {
             name: "Masala Peanuts",
@@ -556,13 +592,14 @@ const Products = () => {
             storageTip: "Store in airtight container.",
             packaging: "Foil pouch with zip-lock.",
             flavor: "Spicy Masala",
+            isInCart: true,
+
           },
         ],
       },
       {
         category: "Tomato",
         selectionType: "radio",
-        isInCart: false,
         variants: [
           {
             name: "Hybrid Tomato",
@@ -582,6 +619,8 @@ const Products = () => {
             storageTip: "Store at room temp; avoid fridge unless overripe.",
             packaging: "Paper tray with netting.",
             harvestSeason: "Year-round",
+           isInCart: false,
+
           },
           {
             name: "Cherry Tomato",
@@ -601,13 +640,14 @@ const Products = () => {
             storageTip: "Keep refrigerated in original pack.",
             packaging: "Plastic punnet box.",
             harvestSeason: "All seasons",
+            isInCart: false,
+
           },
         ],
       },
       {
         category: "Cucumber",
         selectionType: "radio",
-        isInCart: true,
         variants: [
           {
             name: "English Cucumber",
@@ -626,6 +666,8 @@ const Products = () => {
             storageTip: "Wrap in paper towel and refrigerate.",
             packaging: "Plastic sleeve wrap.",
             harvestSeason: "Year-round (greenhouse)",
+            isInCart: true,
+
           },
           {
             name: "Desi Cucumber",
@@ -645,6 +687,8 @@ const Products = () => {
             storageTip: "Keep in fridge crisper tray.",
             packaging: "Net bag with paper lining.",
             harvestSeason: "Summer to early monsoon",
+            isInCart: true,
+
           },
         ],
       },
@@ -744,7 +788,7 @@ const Products = () => {
       price: finalPrice,
     };
 
-    if (product.isInCart === false) {
+    if (realVariant.isInCart === false) {
       const existingIndex = cart.findIndex(
         (item) =>
           item.name === newItem.name && item.category === newItem.category
@@ -765,7 +809,6 @@ const Products = () => {
         cart.push(newItem);
       }
     } else {
-      // Always push new line for products with isInCart = true
       cart.push(newItem);
     }
   });
