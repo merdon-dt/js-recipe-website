@@ -707,7 +707,7 @@ const Products = () => {
     );
   }
 
-  function addToCart(variants) {
+ function addToCart(variants) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   variants.forEach((variant) => {
@@ -717,11 +717,31 @@ const Products = () => {
     const realVariant = product.variants.find((v) => v.name === variant.name);
     if (!realVariant) return;
 
-    
+    const qty = realVariant.count ?? 1;
+    const totalQuantity = realVariant.baseQuantity * qty;
+
+    const basePrice =
+      realVariant.unit === "g"
+        ? (realVariant.pricePerUnit / 1000) * totalQuantity
+        : realVariant.pricePerUnit * totalQuantity;
+
+    const discountAmt = realVariant.discount
+      ? (basePrice * realVariant.discount) / 100
+      : 0;
+
+    const priceAfterDiscount = basePrice - discountAmt;
+    const tax = priceAfterDiscount * (realVariant.taxRate || 0);
+    const finalPrice = priceAfterDiscount + tax;
 
     const newItem = {
       ...realVariant,
       category: product.category,
+      count: qty,
+      quantity: totalQuantity,
+      basePrice,
+      discountAmt,
+      tax,
+      price: finalPrice,
     };
 
     if (product.isInCart === false) {
@@ -729,7 +749,7 @@ const Products = () => {
         (item) =>
           item.name === newItem.name && item.category === newItem.category
       );
-     
+
       if (existingIndex !== -1) {
         const existingItem = cart[existingIndex];
         cart[existingIndex] = {
@@ -745,12 +765,14 @@ const Products = () => {
         cart.push(newItem);
       }
     } else {
+      // Always push new line for products with isInCart = true
       cart.push(newItem);
     }
   });
 
   localStorage.setItem("cart", JSON.stringify(cart));
   toast.success("Items Added");
+
   setTimeout(() => navigate("/cart"), 1000);
 }
   

@@ -19,47 +19,105 @@ const CategoryPage = () => {
   const activeVariant = variants[activeIdx];
   const otherVariants = variants.filter((i) => i !== activeIdx);
 
-  const increment = () => setquan((q) => q + 1);
-  const decrement = () => setquan((q) => (q > 1 ? q - 1 : 1));
+ const increment = () => {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existingQty = cart
+      .filter(
+        (item) =>
+          item.name === activeVariant.name &&
+          item.category === categoryName
+      )
+      .reduce((sum, item) => sum + item.count, 0);
 
-  const addToCart = () => {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
- 
-  const newItem = {
-    ...activeVariant,
-    category: categoryName,
+    if (existingQty + quan < activeVariant.stock) {
+      setquan((q) => q + 1);
+    } else {
+      toast.error("Reached maximum stock limit!");
+    }
   };
 
-  if (activeVariant.isInCart === false) {
-    const existingIndex = cart.findIndex(
-      (item) =>
-        item.name === newItem.name && item.category === newItem.category
-    );
+  const decrement = () => setquan((q) => (q > 1 ? q - 1 : 1));
 
-    if (existingIndex !== -1) {
-      const existingItem = cart[existingIndex];
-      cart[existingIndex] = {
-        ...existingItem,
-        count: existingItem.count + newItem.count,
-        quantity: existingItem.quantity + newItem.quantity,
-        basePrice: existingItem.basePrice + newItem.basePrice,
-        discountAmt: existingItem.discountAmt + newItem.discountAmt,
-        tax: existingItem.tax + newItem.tax,
-        price: existingItem.price + newItem.price,
-      };
-    } else {
-      cart.push(newItem); 
+
+  const addToCart = () => {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const productsAll = JSON.parse(localStorage.getItem("products")) || [];
+
+    const product = productsAll.find((p) => p.category === categoryName);
+    if (!product) return;
+
+    const realVariant = product.variants.find((v) => v.name === activeVariant.name);
+    if (!realVariant) return;
+
+    const qty = quan;
+
+    const alreadyInCart = cart
+      .filter((item) => item.name === realVariant.name && item.category === categoryName)
+      .reduce((s, it) => s + (it.count || 0), 0);
+
+    if (alreadyInCart + qty > (realVariant.stock || 0)) {
+      toast.error("Not enough stock!");
+      return;
     }
-  } else {
-    cart.push(newItem);
-  }
 
-  localStorage.setItem("cart", JSON.stringify(cart));
-  toast.success("Item Added");
+    const totalQuantity = realVariant.baseQuantity * qty;
+    const basePrice =
+      realVariant.unit === "g"
+        ? (realVariant.pricePerUnit / 1000) * totalQuantity
+        : realVariant.pricePerUnit * totalQuantity;
 
-  setTimeout(() => navigate("/cart"), 1000);
-};
+    const discountAmt = realVariant.discount ? (basePrice * realVariant.discount) / 100 : 0;
+    const priceAfterDiscount = basePrice - discountAmt;
+    const tax = priceAfterDiscount * (realVariant.taxRate || 0);
+    const finalPrice = priceAfterDiscount + tax;
+
+    const newItem = {
+      name: realVariant.name,
+      category: categoryName,
+      count: qty,
+      quantity: totalQuantity,
+      baseQuantity: realVariant.baseQuantity,
+      unit: realVariant.unit,
+      pricePerUnit: realVariant.pricePerUnit,
+      basePrice,
+      discountAmt,
+      tax,
+      price: finalPrice,
+      discount: realVariant.discount ?? 0,
+      taxRate: realVariant.taxRate ?? 0,
+      img: realVariant.img ?? null,
+    };
+
+    const mergeable = product.isInCart === false;
+
+    if (mergeable) {
+      const idx = cart.findIndex((it) => it.name === newItem.name && it.category === newItem.category);
+      if (idx >= 0) {
+        cart[idx] = {
+
+          ...cart[idx],
+          count: cart[idx].count + newItem.count,
+          quantity: cart[idx].quantity + newItem.quantity,
+          basePrice: cart[idx].basePrice + newItem.basePrice,
+          discountAmt: cart[idx].discountAmt + newItem.discountAmt,
+          tax: cart[idx].tax + newItem.tax,
+          price: cart[idx].price + newItem.price,
+        };
+      } else {
+        cart.push(newItem);
+      }
+    } else {
+      cart.push(newItem);
+    }
+
+    realVariant.stock = Math.max(0, (realVariant.stock || 0) - qty);
+    localStorage.setItem("products", JSON.stringify(productsAll));
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    toast.success("Item Added");
+    setTimeout(() => navigate("/cart"), 1000);
+  };
 
   const calculatePrice = () => {
     const basePrice =
@@ -97,6 +155,12 @@ const CategoryPage = () => {
           <button className="cartbut" onClick={addToCart}>
             Add to Cart
           </button>
+
+          <p style={{ fontSize: "14px", color: "red", marginTop: "5px" }}>
+            {products.find((p) => p.category === categoryName)?.isInCart
+              ? "This product will be added as a separate item in the cart."
+              : "This product will merge with existing items in the cart."}
+          </p>
         </div>
       </div>
 
